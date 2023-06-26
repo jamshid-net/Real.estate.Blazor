@@ -5,9 +5,6 @@ public class House
     public string Description { get; set;}
     public decimal Price { get; set; }
     public float Area { get; set; }
-
-
-    
     public int CountOfRoom { get; set; }
 
     public string MainImage { get; set; }
@@ -19,7 +16,7 @@ public class House
 
 
     public Guid ComfortId { get; set; }
-    public virtual Comfort Comfort { get; set; }
+    public virtual ThereIsInHouse Comfort { get; set; }
 
 
     public Guid CategoryId { get; set; }
