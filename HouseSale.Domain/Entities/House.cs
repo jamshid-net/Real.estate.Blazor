@@ -1,4 +1,6 @@
-﻿namespace HouseSale.Domain.Entities;
+﻿using HouseSale.Domain.Entities.BoolTypeEntities;
+
+namespace HouseSale.Domain.Entities;
 public class House
 {
     public Guid HouseId { get; set; }
@@ -8,7 +10,7 @@ public class House
     public int CountOfRoom { get; set; }
 
     public string MainImage { get; set; }
-    public virtual List<HouseImage> Images { get; set; }
+    public virtual List<HouseImage>? Images { get; set; }
 
     public Guid AddressId { get; set; }
     public virtual Address Address { get; set; }
