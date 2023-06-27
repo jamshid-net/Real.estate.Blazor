@@ -1,6 +1,9 @@
 ﻿namespace HouseSale.Domain.Entities.BoolTypeEntities;
 public class LocatedNearby
 {
+
+    public Guid LocatedNearbyId { get; set; }
+
     public bool Hospital { get; set; } = false;
     public bool Playground { get; set; } = false;
     public bool Kindergarten { get; set; } = false;
