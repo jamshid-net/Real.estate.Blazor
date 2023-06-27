@@ -15,14 +15,17 @@ public class House
 
 
 
+
     public Guid AddressId { get; set; }
     public virtual Address Address { get; set; }
 
 
 
-    public Guid ComfortId { get; set; }
+    public Guid ThereIsInHouseId { get; set; }
 
     public virtual ThereIsInHouse Comfort { get; set; }
+
+
 
     public Guid CategoryId { get; set; }
     public virtual Category Category { get; set; }
