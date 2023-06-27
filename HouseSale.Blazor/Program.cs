@@ -1,4 +1,5 @@
 
+using HouseSale.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -9,14 +10,16 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-      
         builder.Services.AddRazorPages();
 
         builder.Services.AddServerSideBlazor();
 
-       
+        builder.Services.AddInfrastructure(builder.Configuration);
+
+
         builder.Services.AddHttpContextAccessor();
         var app = builder.Build();
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
        
         if (!app.Environment.IsDevelopment())

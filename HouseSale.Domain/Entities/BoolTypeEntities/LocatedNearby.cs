@@ -14,4 +14,7 @@ public class LocatedNearby
     public bool Residence { get; set; } = false;
     public bool Supermarkets { get; set; } = false;
     public bool School { get; set; } = false;
+
+    public Guid HouseId { get; set; }
+    public virtual House House { get; set; }
 }

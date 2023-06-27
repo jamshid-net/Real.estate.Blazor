@@ -1,5 +1,5 @@
 ﻿namespace HouseSale.Application.Commons.Exceptions;
-public class NotFoundException
+public class NotFoundException:Exception
 {
     public NotFoundException() : base()
     {
