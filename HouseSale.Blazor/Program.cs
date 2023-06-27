@@ -10,7 +10,6 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-      
         builder.Services.AddRazorPages();
 
         builder.Services.AddServerSideBlazor();
@@ -20,6 +19,7 @@ public class Program
 
         builder.Services.AddHttpContextAccessor();
         var app = builder.Build();
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
        
         if (!app.Environment.IsDevelopment())
