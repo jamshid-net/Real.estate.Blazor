@@ -11,29 +11,21 @@ public class House
     public int CountOfRoom { get; set; }
 
     public string MainImage { get; set; }
-    public virtual List<HouseImage>? Images { get; set; }
-
+    public virtual List<HouseImage>? HouseImages { get; set; } = new();
 
     public Guid AddressId { get; set; }
     public virtual Address Address { get; set; }
 
 
-    public Guid CategoryId { get; set; }
     public virtual Category Category { get; set; }
 
-
-    public Guid CategoryRentSaleId { get; set; }
     public virtual CategoryRentSale CategoryRentSale { get; set; }
 
 
-    public Guid HomeSituationId { get; set; }
     public virtual HomeSituation? HomeSituation { get; set; }
 
-
-    public Guid LocatedNearbyId { get; set; }
     public virtual LocatedNearby? LocatedNearby { get; set; }
 
-    public Guid ThereIsInHouseId { get; set; }
 
     public virtual ThereIsInHouse? Comfort { get; set; }
 
