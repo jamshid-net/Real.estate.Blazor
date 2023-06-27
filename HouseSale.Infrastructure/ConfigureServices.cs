@@ -1,3 +1,4 @@
+
 ﻿using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Domain.Identity;
 using HouseSale.Infrastructure.Persistance;
@@ -11,6 +12,7 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,IConfiguration configuration)
     {
+
         services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
         {
             options.UseLazyLoadingProxies();
@@ -21,6 +23,7 @@ public static class ConfigureServices
         services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
            .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
         
+
 
         return services;
     }

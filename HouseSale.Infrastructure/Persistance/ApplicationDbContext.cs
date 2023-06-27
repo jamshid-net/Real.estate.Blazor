@@ -5,7 +5,9 @@ using HouseSale.Domain.Identity;
 using HouseSale.Domain.PageEntities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
 using System.Reflection;
+
 
 namespace HouseSale.Infrastructure.Persistance;
 public class ApplicationDbContext : IdentityDbContext<User>, IApplicationDbContext
@@ -25,11 +27,13 @@ public class ApplicationDbContext : IdentityDbContext<User>, IApplicationDbConte
     public DbSet<ThereIsInHouse> ThereIsInHouses {get;set;}
     public DbSet<PageEntity> PageEntities {get;set;}
     public DbSet<SocialContact> SocialContacts {get;set;}
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(modelBuilder);
     }
+
 
 
 }

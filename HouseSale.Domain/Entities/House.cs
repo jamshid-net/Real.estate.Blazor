@@ -24,15 +24,15 @@ public class House
 
     public virtual HomeSituation? HomeSituation { get; set; }
 
-    public virtual LocatedNearby? LocatedNearby { get; set; }
 
+    public virtual LocatedNearby? LocatedNearby { get; set; }
 
     public virtual ThereIsInHouse? Comfort { get; set; }
 
 
+
     public string? CreatedBy { get; set; }
     public DateTime CreatedAt { get; set; }
-
 
 
 
