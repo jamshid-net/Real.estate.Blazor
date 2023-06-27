@@ -1,6 +1,7 @@
 ﻿namespace HouseSale.Domain.Entities.BoolTypeEntities;
 public class ThereIsInHouse
 {
+    public Guid ThereIsInHouseId { get; set; }  
     public bool Ethernet { get; set; } = false;
     public bool Phone { get; set; } = false;
     public bool Pool { get; set; } = false;

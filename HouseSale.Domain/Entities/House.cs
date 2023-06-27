@@ -27,10 +27,8 @@ public class House
     public Guid CategoryId { get; set; }
     public virtual Category Category { get; set; }
 
+
     public Guid CategoryRentSaleId { get; set; }
     public virtual CategoryRentSale CategoryRentSale { get; set; }
-
-
-
 
 }
