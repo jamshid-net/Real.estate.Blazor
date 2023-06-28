@@ -1,6 +1,4 @@
 
-using Blazored.SessionStorage;
-
 using HouseSale.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -19,8 +17,8 @@ public class Program
         });
 
 
-
-        builder.Services.AddHttpClient();
+        
+       
         builder.Services.AddServerSideBlazor();
 
         builder.Services.AddInfrastructure(builder.Configuration);
@@ -31,9 +29,12 @@ public class Program
 
 
       
+=======
+        builder.Services.AddAuthentication().AddCookie();
+>>>>>>> parent of 8fc4bbf (Fixed authorize)
         builder.Services.AddAuthorization();
-       
-        builder.Services.AddBlazoredSessionStorage();
+
+
 
 
         builder.Services.AddHttpContextAccessor();

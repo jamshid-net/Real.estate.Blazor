@@ -3,11 +3,12 @@
 
 @inject NavigationManager NavigationManager
 
-@code 
-{
+@code {
    
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+
 
     protected async override Task OnInitializedAsync()
     {
@@ -16,10 +17,13 @@
         if (!authenticationState.User.Identity.IsAuthenticated)
         {
             
-            NavigationManager.NavigateTo($"Identity/Account/Login?returnUrl/contactus", forceLoad: false);
+            NavigationManager.NavigateTo($"/login//contactus", forceLoad: false);
         }
     }
+        
   
+    
+
 }
 
 
@@ -27,7 +31,7 @@
     <Authorized>
         <div class="container">
             <div class="row">
-               
+
                 <div class="left-text mb-2">
                     <div class="card" style="width: 20rem;">
 
