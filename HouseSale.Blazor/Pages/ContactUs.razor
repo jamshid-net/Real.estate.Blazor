@@ -1,10 +1,26 @@
-﻿@page "/contactus"
+@page "/contactus"
+@using System.Net;
+
 @inject NavigationManager NavigationManager
 
 @code {
    
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        var authenticationState = await authenticationStateTask;
+
+        if (!authenticationState.User.Identity.IsAuthenticated)
+        {
+            string returnUrl = WebUtility.UrlEncode($"/contactus/");
+            NavigationManager.NavigateTo($"/identity/account/login?returnUrl={returnUrl}", forceLoad: true);
+        }
+
+        
 
     protected override async Task OnInitializedAsync()
     {
@@ -17,10 +33,12 @@
             // Redirect to the login page
             NavigationManager.NavigateTo("/property", forceLoad: false);
         }
+
     }
     
 
 }
+
 
 <AuthorizeView>
     <Authorized>
