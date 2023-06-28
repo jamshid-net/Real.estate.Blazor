@@ -1,0 +1,11 @@
+﻿@page "/register"
+@using Microsoft.AspNetCore.Components.Forms
+@using HouseSale.Blazor.PagesBase;
+@inherits RegisterBase
+
+<EditForm Model="RegisterModel">
+    <div class="form-group">
+        <label for="name">FullName</label>
+        <InputText @bind-Value=RegisterModel. class="form-control" id="name" />
+    </div>
+</EditForm>

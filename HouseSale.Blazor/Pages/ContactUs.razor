@@ -4,7 +4,7 @@
 @inject NavigationManager NavigationManager
 
 @code {
-   
+
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
@@ -19,23 +19,8 @@
             string returnUrl = WebUtility.UrlEncode($"/contactus/");
             NavigationManager.NavigateTo($"/identity/account/login?returnUrl={returnUrl}", forceLoad: true);
         }
-
-        
-
-    protected override async Task OnInitializedAsync()
-    {
-        var authenticationState = await authenticationStateTask;
-        var user = authenticationState.User;
-
-        // Check if the user is authenticated
-        if (!user.Identity.IsAuthenticated)
-        {
-            // Redirect to the login page
-            NavigationManager.NavigateTo("/property", forceLoad: false);
-        }
-
     }
-    
+
 
 }
 
