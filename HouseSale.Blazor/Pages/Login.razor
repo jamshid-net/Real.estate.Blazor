@@ -1,20 +1,38 @@
 
-@page "/login"
+@page "/login/{returnUrl?}"
 @using HouseSale.Blazor.PagesBase;
+@using Microsoft.AspNetCore.WebUtilities;
 @inherits LoginBase 
 @layout IdentityLayout
+@inject NavigationManager navigationManager
 
-<EditForm Model="LoginModel" OnSubmit="OnSubmitLogin">
+
+@code {
+  
+    protected override async Task OnInitializedAsync()
+    {
+        
+        base.NavigationManager = navigationManager;
+        
+    }
+}
+
+
+<EditForm Model="LoginModel" class="w-50" OnSubmit="OnSubmitLogin">
     <div class="form-group">
         <label for="Email">Email</label>
         <InputText @bind-Value=LoginModel.Email class="form-control" id="Email" />
     </div>
     <div class="form-group">
-        <label for="Password">Email</label>
+
+        <label for="Password">Password</label>
         <InputText type="password" @bind-Value=LoginModel.Password class="form-control" id="Password" />
     </div>
      <div class="form-group">
-         <button class="btn btn-success" type="submit">Submit</button>
+         <button class="btn btn-primary" type="submit">Log in</button>
+         <a role="button" class="btn btn-secondary text-white">Register</a>
+         <a role="button" class="btn btn-outline-info" href="/">Cancel</a>
+
      </div>
 </EditForm>
 

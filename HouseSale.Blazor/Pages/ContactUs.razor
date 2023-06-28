@@ -16,8 +16,8 @@
 
         if (!authenticationState.User.Identity.IsAuthenticated)
         {
-            string returnUrl = WebUtility.UrlEncode($"/contactus/");
-            NavigationManager.NavigateTo($"/identity/account/login?returnUrl={returnUrl}", forceLoad: true);
+            
+            NavigationManager.NavigateTo($"/login//contactus", forceLoad: false);
         }
     }
         
