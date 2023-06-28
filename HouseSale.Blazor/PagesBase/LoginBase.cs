@@ -3,10 +3,12 @@ using HouseSale.Blazor.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
+
 namespace HouseSale.Blazor.PagesBase;
 
 public class LoginBase:ComponentBase
 {
+
 
     protected NavigationManager NavigationManager { get; set; }
 
@@ -20,6 +22,7 @@ public class LoginBase:ComponentBase
     protected async Task OnSubmitLogin(EditContext context)
     {
         var LoginModel = context.Model as LoginModel;
+
         if(returnUrl is null)
         {
             returnUrl = "/";
@@ -30,6 +33,12 @@ public class LoginBase:ComponentBase
 
     }
    
+
+       
+        
+    
+
+
 
 
 }

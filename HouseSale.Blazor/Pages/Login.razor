@@ -1,5 +1,5 @@
-@page "/login/{returnUrl}"
 
+@page "/login/{returnUrl?}"
 @using HouseSale.Blazor.PagesBase;
 @using Microsoft.AspNetCore.WebUtilities;
 @inherits LoginBase 
@@ -8,8 +8,7 @@
 
 
 @code {
-   
-
+  
     protected override async Task OnInitializedAsync()
     {
         
@@ -25,6 +24,7 @@
         <InputText @bind-Value=LoginModel.Email class="form-control" id="Email" />
     </div>
     <div class="form-group">
+
         <label for="Password">Password</label>
         <InputText type="password" @bind-Value=LoginModel.Password class="form-control" id="Password" />
     </div>
@@ -32,6 +32,7 @@
          <button class="btn btn-primary" type="submit">Log in</button>
          <a role="button" class="btn btn-secondary text-white">Register</a>
          <a role="button" class="btn btn-outline-info" href="/">Cancel</a>
+
      </div>
 </EditForm>
 
