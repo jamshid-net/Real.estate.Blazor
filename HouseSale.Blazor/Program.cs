@@ -27,13 +27,9 @@ public class Program
         builder.Services.AddControllersWithViews();
 
 
-        builder.Services.AddAuthentication().AddCookie("Cookies", options =>
-        {
-            options.LoginPath = "/Identity/Account/Login";
-            options.SlidingExpiration = true;
-            options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
-            options.Cookie.MaxAge = TimeSpan.FromMinutes(10);
-        });
+
+
+
       
         builder.Services.AddAuthorization();
        
