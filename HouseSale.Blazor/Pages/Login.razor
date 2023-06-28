@@ -2,6 +2,7 @@
 @page "/login"
 @using HouseSale.Blazor.PagesBase;
 @inherits LoginBase 
+@layout IdentityLayout
 
 <EditForm Model="LoginModel" OnSubmit="OnSubmitLogin">
     <div class="form-group">
