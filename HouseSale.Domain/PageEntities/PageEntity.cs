@@ -1,4 +1,4 @@
-﻿namespace HouseSale.Domain.PageEntities;
+namespace HouseSale.Domain.PageEntities;
 public class PageEntity
 {
 

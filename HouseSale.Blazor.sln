@@ -5,11 +5,11 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseSale.Blazor", "HouseSale.Blazor\HouseSale.Blazor.csproj", "{0E7BFA77-42AA-4342-B0A9-3F7EE97EF3CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseSale.Domain", "HouseSale.Domain\HouseSale.Domain.csproj", "{801DAB81-33EE-4EFF-AFFD-EAC8D39F426D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseSale.Domain", "HouseSale.Domain\HouseSale.Domain.csproj", "{801DAB81-33EE-4EFF-AFFD-EAC8D39F426D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseSale.Infrastructure", "HouseSale.Infrastructure\HouseSale.Infrastructure.csproj", "{A29644E4-E133-4D72-A98F-F5501CBEB419}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseSale.Infrastructure", "HouseSale.Infrastructure\HouseSale.Infrastructure.csproj", "{A29644E4-E133-4D72-A98F-F5501CBEB419}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseSale.Application", "HouseSale.Application\HouseSale.Application.csproj", "{D5BD4D0E-DD95-4425-8619-A2D96D31284D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseSale.Application", "HouseSale.Application\HouseSale.Application.csproj", "{D5BD4D0E-DD95-4425-8619-A2D96D31284D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

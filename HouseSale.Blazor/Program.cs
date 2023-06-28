@@ -10,11 +10,21 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddRazorPages();
 
+        builder.Services.AddRazorPages(options =>
+        {
+            options.Conventions.AuthorizeFolder("/contactus");
+        });
+
+
+        
+       
         builder.Services.AddServerSideBlazor();
 
         builder.Services.AddInfrastructure(builder.Configuration);
+        builder.Services.AddControllersWithViews();
+
+        builder.Services.AddAuthorization();
 
 
         builder.Services.AddHttpContextAccessor();
@@ -34,9 +44,13 @@ public class Program
 
         app.UseRouting();
 
-        app.MapBlazorHub();
-        app.MapFallbackToPage("/_Host");
+        app.UseAuthentication();
+        app.UseAuthorization();
 
+        app.MapBlazorHub();
+        app.MapControllers();
+        app.MapFallbackToPage("/_Host");
+      
         app.Run();
     }
 }
