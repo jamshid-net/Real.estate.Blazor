@@ -1,13 +1,147 @@
 ﻿@inherits LayoutComponentBase
 
 <PageTitle>HouseSale.Blazor</PageTitle>
+    <header class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="index.html">
+                    <span>
+                        Estee
+                    </span>
+                </a>
 
-<div class="page">
-    <main>
-       
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/property">Property</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contactus">Contact us</a>
+                        </li>
+                       
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="/login"> Login</a>
+
+                        </li>
+                        <form class="form-inline">
+                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </ul>
+                    <div class="quote_btn-container">
+                        <a href="" class="quote_btn">
+                            Get A Quote
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+     @Body
+   
+    <!-- info section -->
+    <section class="info_section ">
+
+        <div class="container">
+            <div class="contact_nav">
+                <a href="">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <span>
+                        Call : +01 123455678990
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span>
+                        Email : demo@gmail.com
+                    </span>
+                </a>
+                <a href="">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>
+                        Location
+                    </span>
+                </a>
+            </div>
+
+            <div class="info_top ">
+                <div class="row info_main_row">
+                    <div class=" col-md-4 col-lg-4 ">
+                        <div class="info_about">
+                            <h4>
+                                About Us
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, vitae. Dolorem incidunt consectetur, recusandae enim officiis mollitia modi consequatur ab non animi provident quis asperiores eius omnis suscipit maiores perferendis?
+                            </p>
+                        </div>
+                    </div>
+                    <div class=" col-md-4 col-lg-3 mx-auto">
+                        <div class="info_links">
+                            <h4>
+                                QUICK LINKS
+                            </h4>
+                            <div class="info_links_menu">
+                                <a class="" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                <a class="" href="about.html"> About</a>
+                               
+                                <a class="" href="property.html">Property</a>
+                                <a class="" href="why.html">Why Us</a>
+                                <a class="" href="testimonial.html">Testimonial</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info_form">
+                            <h4>
+                                SIGN UP TO OUR NEWSLETTER
+                            </h4>
+                            <form action="">
+                                <input type="text" placeholder="Enter Your Email" />
+                                <button type="submit">
+                                    Subscribe
+                                </button>
+                            </form>
+                            <div class="social_box">
+                                <a href="">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end info_section -->
+    <!-- footer section -->
+    <footer class="footer_section">
+        <div class="container">
+            <p>
+                &copy; <span id="displayYear"></span> All Rights Reserved
+              
+            </p>
+        </div>
+    </footer>
+

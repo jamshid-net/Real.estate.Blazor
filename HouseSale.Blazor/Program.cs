@@ -1,4 +1,5 @@
 
+using HouseSale.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -9,14 +10,30 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-      
-        builder.Services.AddRazorPages();
 
+        builder.Services.AddRazorPages(options =>
+        {
+            options.Conventions.AuthorizeFolder("/contactus");
+        });
+
+
+        
+       
         builder.Services.AddServerSideBlazor();
 
-       
+        builder.Services.AddInfrastructure(builder.Configuration);
+        builder.Services.AddControllersWithViews();
+
+
+        builder.Services.AddAuthentication().AddCookie();
+        builder.Services.AddAuthorization();
+
+
+
+
         builder.Services.AddHttpContextAccessor();
         var app = builder.Build();
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
        
         if (!app.Environment.IsDevelopment())
@@ -31,9 +48,17 @@ public class Program
 
         app.UseRouting();
 
-        app.MapBlazorHub();
-        app.MapFallbackToPage("/_Host");
+        app.UseAuthentication();
+        app.UseAuthorization();
 
+
+        app.MapControllers();
+     
+
+        app.MapBlazorHub();
+    
+        app.MapFallbackToPage("/_Host");
+      
         app.Run();
     }
 }

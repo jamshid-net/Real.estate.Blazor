@@ -1,0 +1,95 @@
+@page "/contactus"
+@using System.Net;
+
+@inject NavigationManager NavigationManager
+
+@code {
+   
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        var authenticationState = await authenticationStateTask;
+
+        if (!authenticationState.User.Identity.IsAuthenticated)
+        {
+            
+            NavigationManager.NavigateTo($"/login//contactus", forceLoad: false);
+        }
+    }
+        
+  
+    
+
+}
+
+
+<AuthorizeView>
+    <Authorized>
+        <div class="container">
+            <div class="row">
+
+                <div class="left-text mb-2">
+                    <div class="card" style="width: 20rem;">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Contact Us</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="list-group-item">Address Sunny Isles Beach, FL 33160, United States</p>
+                            <p class="list-group-item"><span>Phone</span> +123 456 7890</p>
+                            <p class="list-group-item"><span>Email</span> lugx@contact.com</p>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="right-content">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div id="map">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12469.776493332698!2d-80.14036379941481!3d25.907788681148624!2m3!1f357.26927939317244!2f20.870722720054623!3f0!3m2!1i1024!2i768!4f35!3m3!1m2!1s0x88d9add4b4ac788f%3A0xe77469d09480fcdb!2sSunny%20Isles%20Beach!5e1!3m2!1sen!2sth!4v1642869952544!5m2!1sen!2sth" width="100%" height="325px" frameborder="0" style="border:0; border-radius: 23px;" allowfullscreen=""></iframe>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <form>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="row">
+                                        <div class="col-lg-6 form-group">
+                                            <input type="text" class="form-control" placeholder="Your name" />
+                                        </div>
+                                        <div class="col-lg-6 form-group">
+                                            <input type="email" class="form-control" placeholder="Phone email" />
+                                        </div>
+                                        <div class="col-lg-6 form-group">
+                                            <input type="tel" class="form-control" placeholder="Your phone" />
+                                        </div>
+                                        <div class="col-lg-12 form-group">
+                                            <textarea placeholder="Message" class="form-control"></textarea>
+                                        </div>
+                                        <div class="col-lg-12 form-group">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <p>User is not authorized.</p>
+    </NotAuthorized>
+</AuthorizeView>
+       
+
+
+   
