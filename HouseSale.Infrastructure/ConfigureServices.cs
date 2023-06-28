@@ -22,6 +22,7 @@ public static class ConfigureServices
         });
         services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
            .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
         services.ConfigureApplicationCookie(options =>
         {
             options.Cookie.HttpOnly = true;
@@ -32,6 +33,7 @@ public static class ConfigureServices
             options.SlidingExpiration = true;
 
         });
+
 
 
 
