@@ -1,3 +1,4 @@
+
 ﻿using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Domain.Identity;
 using HouseSale.Infrastructure.Persistance;
@@ -11,6 +12,7 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,IConfiguration configuration)
     {
+
         services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
         {
             options.UseLazyLoadingProxies();
@@ -30,6 +32,7 @@ public static class ConfigureServices
             options.SlidingExpiration = true;
 
         });
+
 
 
         return services;
