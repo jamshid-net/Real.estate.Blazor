@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="AuthenticationUser\" />
     <Folder Include="Data\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
+    <Folder Include="PagesBase\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\fonts\" />
@@ -24,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazored.SessionStorage" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="7.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.8">
       <PrivateAssets>all</PrivateAssets>

@@ -1,4 +1,6 @@
 
+using Blazored.SessionStorage;
+
 using HouseSale.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -17,18 +19,25 @@ public class Program
         });
 
 
-        
-       
+
+        builder.Services.AddHttpClient();
         builder.Services.AddServerSideBlazor();
 
         builder.Services.AddInfrastructure(builder.Configuration);
         builder.Services.AddControllersWithViews();
 
 
-        builder.Services.AddAuthentication().AddCookie();
+        builder.Services.AddAuthentication().AddCookie("Cookies", options =>
+        {
+            options.LoginPath = "/Identity/Account/Login";
+            options.SlidingExpiration = true;
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+            options.Cookie.MaxAge = TimeSpan.FromMinutes(10);
+        });
+      
         builder.Services.AddAuthorization();
-
-
+       
+        builder.Services.AddBlazoredSessionStorage();
 
 
         builder.Services.AddHttpContextAccessor();
