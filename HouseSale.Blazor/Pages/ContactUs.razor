@@ -1,11 +1,13 @@
-﻿@page "/contactus"
+@page "/contactus"
 @using System.Net;
+
 @inject NavigationManager NavigationManager
 
 @code {
    
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
+
 
 
     protected async override Task OnInitializedAsync()
@@ -19,10 +21,25 @@
         }
 
         
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authenticationState = await authenticationStateTask;
+        var user = authenticationState.User;
+
+        // Check if the user is authenticated
+        if (!user.Identity.IsAuthenticated)
+        {
+            // Redirect to the login page
+            NavigationManager.NavigateTo("/property", forceLoad: false);
+        }
+
     }
     
 
 }
+
+
 <AuthorizeView>
     <Authorized>
         <div class="container">
