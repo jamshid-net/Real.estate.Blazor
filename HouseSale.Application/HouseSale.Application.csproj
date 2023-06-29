@@ -27,6 +27,7 @@
   <ItemGroup>
     <Folder Include="Commons\DtoModels\" />
     <Folder Include="UseCases\Addresses\Validations\" />
+    <Folder Include="UseCases\HomeSituations\Queries\" />
     <Folder Include="UseCases\Houses\Validations\" />
   </ItemGroup>
 
