@@ -31,6 +31,7 @@ public class Program
       
 
         builder.Services.AddAuthentication().AddCookie();
+
         builder.Services.AddAuthorization();
 
 
