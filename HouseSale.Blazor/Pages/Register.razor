@@ -1,11 +1,40 @@
-﻿@page "/register"
-@using Microsoft.AspNetCore.Components.Forms
+﻿
+@page "/register"
+@using HouseSale.Blazor.Models;
 @using HouseSale.Blazor.PagesBase;
 @inherits RegisterBase
+@layout IdentityLayout
+@inject NavigationManager navigateionManager
 
-<EditForm Model="RegisterModel">
+@code{
+    private RegisterModels registerModels = new RegisterModels();
+
+}
+
+<EditForm Model="RegisterModels" class="w-50" OnSubmit="OnSubmitRegister">
     <div class="form-group">
-        <label for="name">FullName</label>
-        <InputText @bind-Value=RegisterModel. class="form-control" id="name" />
+        <label for="Name">FullName</label>
+        <InputText @bind-Value=registerModels.FullName class="form-control" id="Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <InputText @bind-Value=registerModels.Email class="form-control" id="Email" />
+    </div>
+
+    <div class="form-group">
+        <label type="Password" for="Password">Password</label>
+        <InputText @bind-Value=registerModels.Password class="form-control" id="Password" />
+    </div>
+
+    <div class="form-group">
+        <label for="Picture">ProfilePicture</label>
+        <InputFile @bind-Value=registerModels.ProfilePicture class="form-control" id="Picture" />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Register</button>
+        <a role="button" class="btn btn-secondary text-white">Log in</a>
+        <a role="button" class="btn btn-outline-info" href="/">Cancel</a>
+
     </div>
 </EditForm>

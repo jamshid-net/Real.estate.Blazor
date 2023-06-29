@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Register.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\css\" />
@@ -44,18 +40,6 @@
   <ItemGroup>
     <ProjectReference Include="..\HouseSale.Application\HouseSale.Application.csproj" />
     <ProjectReference Include="..\HouseSale.Infrastructure\HouseSale.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Register.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Register.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Register.razor" />
   </ItemGroup>
 
 </Project>
