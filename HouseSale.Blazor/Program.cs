@@ -24,14 +24,7 @@ public class Program
         builder.Services.AddInfrastructure(builder.Configuration);
         builder.Services.AddControllersWithViews();
 
-
-
-
-
-      
-=======
         builder.Services.AddAuthentication().AddCookie();
->>>>>>> parent of 8fc4bbf (Fixed authorize)
         builder.Services.AddAuthorization();
 
 

@@ -1,13 +1,6 @@
-﻿using HouseSale.Application.Commons.DtoModels;
-using HouseSale.Application.Commons.Interfaces;
+﻿using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Domain.Entities;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HouseSale.Application.UseCases.Addresses.Queries;
 public class GetByIdAddressQuery:IRequest<Address>
