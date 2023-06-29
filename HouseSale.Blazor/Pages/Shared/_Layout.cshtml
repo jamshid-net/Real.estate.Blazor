@@ -2,82 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Gaming.MVC</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Gaming.MVC.styles.css" asp-append-version="true" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Estee</title>
+
+
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+
+
+    <link href="~/css/nice-select.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+
+
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+
+
+    <link href="~/css/style.css" rel="stylesheet" />
+
+
+    <link href="~/css/responsive.css" rel="stylesheet" />
+
 </head>
 <body>
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Real Estate</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Gaming Website</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-
-                        @if (User.IsInRole("admin"))
-                        {
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="Carts" asp-action="Index">Carts</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="Orders" asp-action="Index">Orders</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="UserRole" asp-action="Index">User roles</a>
-                                </li>
-                        }
-
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3 text-info">
-            @RenderBody()
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Identity/Account/Login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Identity/Account/Register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page">
+        <main>
+            <article class="content px-4 d-flex justify-content-center pt-5">
+                @RenderBody()
+            </article>
         </main>
     </div>
+    <footer class="fixed-bottom border border-primary">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Gaming.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+           
         </div>
+        <!-- Copyright -->
+
+
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <script src="~/js/custom.js"></script>
+   
     @await RenderSectionAsync("Scripts", required: false)
-
-    <style>
-        body{
-            background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-        }
-        nav{
-            background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-        }
-
-
-        </style>
 </body>
 </html>

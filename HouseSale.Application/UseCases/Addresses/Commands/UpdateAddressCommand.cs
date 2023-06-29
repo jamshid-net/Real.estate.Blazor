@@ -1,4 +1,5 @@
 ﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ public class UpdateAddressCommandHandler : IRequestHandler<UpdateAddressCommand>
     {
         var foundAddress = await _context.Addresses.FindAsync(new object[] { request.AddressId }, cancellationToken);
         if (foundAddress is null)
-            throw new NotFoundException();
+            throw new NotFoundException(nameof(Address), request.AddressId);
 
         foundAddress.Street = request.Street;
         foundAddress.City = request.City;
