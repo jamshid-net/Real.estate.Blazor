@@ -10,6 +10,9 @@ public class HomeSituation
     public bool MakeupBeforeClean { get; set; } = false;
     public bool Perishable { get; set; } = false;
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> b1c8d7c482d61c85eec7f0b848b7428bb805ba8f
     public virtual House House { get; set; }
 }
