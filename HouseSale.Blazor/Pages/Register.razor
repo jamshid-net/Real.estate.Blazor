@@ -9,6 +9,10 @@
 @code{
     private RegisterModels registerModels = new RegisterModels();
 
+    protected override async Task OnInitializedAsync()
+    {
+        base.NavigationManager = navigateionManager;
+    }
 }
 
 <EditForm Model="RegisterModels" class="w-50" OnSubmit="OnSubmitRegister">
@@ -33,7 +37,7 @@
     </div>
     <div class="form-group">
         <button class="btn btn-primary" type="submit">Register</button>
-        <a role="button" class="btn btn-secondary text-white">Log in</a>
+        <a role="button" class="btn btn-secondary text-white" href="/login">Log in</a>
         <a role="button" class="btn btn-outline-info" href="/">Cancel</a>
 
     </div>

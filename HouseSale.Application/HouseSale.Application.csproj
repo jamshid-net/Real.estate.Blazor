@@ -23,4 +23,8 @@
     <ProjectReference Include="..\HouseSale.Domain\HouseSale.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\CategoryRentSale\Queries\" />
+  </ItemGroup>
+
 </Project>
