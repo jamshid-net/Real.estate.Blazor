@@ -17,7 +17,7 @@
         if (!authenticationState.User.Identity.IsAuthenticated)
         {
             
-            NavigationManager.NavigateTo($"/login//contactus", forceLoad: false);
+            NavigationManager.NavigateTo($"/identity/account/login?returnUrl=%2Fcontactus", forceLoad: true);
         }
     }
 

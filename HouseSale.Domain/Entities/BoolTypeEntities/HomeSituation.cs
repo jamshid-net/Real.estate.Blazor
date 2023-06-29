@@ -10,5 +10,6 @@ public class HomeSituation
     public bool MakeupBeforeClean { get; set; } = false;
     public bool Perishable { get; set; } = false;
 
+    
     public virtual House House { get; set; }
 }
