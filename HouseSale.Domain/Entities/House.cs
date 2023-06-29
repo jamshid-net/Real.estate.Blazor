@@ -16,17 +16,19 @@ public class House
     public Guid AddressId { get; set; }
     public virtual Address Address { get; set; }
 
-
+    public Guid CategoryId { get; set; }
     public virtual Category Category { get; set; }
 
+    public Guid CategoryRentSaleId { get; set; }
     public virtual CategoryRentSale CategoryRentSale { get; set; }
 
-
+    public Guid HomeSituationId { get; set; }
     public virtual HomeSituation? HomeSituation { get; set; }
 
-
+    public Guid LocatedNearbyId { get; set; }
     public virtual LocatedNearby? LocatedNearby { get; set; }
 
+    public Guid ThereIsInHouseId { get; set; }
     public virtual ThereIsInHouse? Comfort { get; set; }
 
 
