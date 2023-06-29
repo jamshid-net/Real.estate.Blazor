@@ -64,6 +64,9 @@ namespace HouseSale.Infrastructure.Migrations
                     b.Property<bool>("BlackPlaster")
                         .HasColumnType("boolean");
 
+                    b.Property<Guid>("HouseId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("MakeupBeforeClean")
                         .HasColumnType("boolean");
 
@@ -77,6 +80,9 @@ namespace HouseSale.Infrastructure.Migrations
                         .HasColumnType("boolean");
 
                     b.HasKey("HomeSituationId");
+
+                    b.HasIndex("HouseId")
+                        .IsUnique();
 
                     b.ToTable("HomeSituations");
                 });
@@ -92,6 +98,9 @@ namespace HouseSale.Infrastructure.Migrations
 
                     b.Property<bool>("Hospital")
                         .HasColumnType("boolean");
+
+                    b.Property<Guid>("HouseId")
+                        .HasColumnType("uuid");
 
                     b.Property<bool>("Kindergarten")
                         .HasColumnType("boolean");
@@ -118,6 +127,9 @@ namespace HouseSale.Infrastructure.Migrations
                         .HasColumnType("boolean");
 
                     b.HasKey("LocatedNearbyId");
+
+                    b.HasIndex("HouseId")
+                        .IsUnique();
 
                     b.ToTable("LocatedNearbies");
                 });
@@ -146,6 +158,9 @@ namespace HouseSale.Infrastructure.Migrations
                     b.Property<bool>("Gym")
                         .HasColumnType("boolean");
 
+                    b.Property<Guid>("HouseId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("Phone")
                         .HasColumnType("boolean");
 
@@ -156,6 +171,9 @@ namespace HouseSale.Infrastructure.Migrations
                         .HasColumnType("boolean");
 
                     b.HasKey("ThereIsInHouseId");
+
+                    b.HasIndex("HouseId")
+                        .IsUnique();
 
                     b.ToTable("ThereIsInHouses");
                 });
@@ -220,21 +238,12 @@ namespace HouseSale.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("HomeSituationId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("LocatedNearbyId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("MainImage")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
-
-                    b.Property<Guid>("ThereIsInHouseId")
-                        .HasColumnType("uuid");
 
                     b.HasKey("HouseId");
 
@@ -243,15 +252,6 @@ namespace HouseSale.Infrastructure.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CategoryRentSaleId");
-
-                    b.HasIndex("HomeSituationId")
-                        .IsUnique();
-
-                    b.HasIndex("LocatedNearbyId")
-                        .IsUnique();
-
-                    b.HasIndex("ThereIsInHouseId")
-                        .IsUnique();
 
                     b.ToTable("Houses");
                 });
@@ -523,6 +523,39 @@ namespace HouseSale.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.HomeSituation", b =>
+                {
+                    b.HasOne("HouseSale.Domain.Entities.House", "House")
+                        .WithOne("HomeSituation")
+                        .HasForeignKey("HouseSale.Domain.Entities.BoolTypeEntities.HomeSituation", "HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("House");
+                });
+
+            modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.LocatedNearby", b =>
+                {
+                    b.HasOne("HouseSale.Domain.Entities.House", "House")
+                        .WithOne("LocatedNearby")
+                        .HasForeignKey("HouseSale.Domain.Entities.BoolTypeEntities.LocatedNearby", "HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("House");
+                });
+
+            modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.ThereIsInHouse", b =>
+                {
+                    b.HasOne("HouseSale.Domain.Entities.House", "House")
+                        .WithOne("Comfort")
+                        .HasForeignKey("HouseSale.Domain.Entities.BoolTypeEntities.ThereIsInHouse", "HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("House");
+                });
+
             modelBuilder.Entity("HouseSale.Domain.Entities.House", b =>
                 {
                     b.HasOne("HouseSale.Domain.Entities.Address", "Address")
@@ -543,35 +576,11 @@ namespace HouseSale.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HouseSale.Domain.Entities.BoolTypeEntities.HomeSituation", "HomeSituation")
-                        .WithOne("House")
-                        .HasForeignKey("HouseSale.Domain.Entities.House", "HomeSituationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HouseSale.Domain.Entities.BoolTypeEntities.LocatedNearby", "LocatedNearby")
-                        .WithOne("House")
-                        .HasForeignKey("HouseSale.Domain.Entities.House", "LocatedNearbyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HouseSale.Domain.Entities.BoolTypeEntities.ThereIsInHouse", "Comfort")
-                        .WithOne("House")
-                        .HasForeignKey("HouseSale.Domain.Entities.House", "ThereIsInHouseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Address");
 
                     b.Navigation("Category");
 
                     b.Navigation("CategoryRentSale");
-
-                    b.Navigation("Comfort");
-
-                    b.Navigation("HomeSituation");
-
-                    b.Navigation("LocatedNearby");
                 });
 
             modelBuilder.Entity("HouseSale.Domain.Entities.HouseImage", b =>
@@ -641,24 +650,6 @@ namespace HouseSale.Infrastructure.Migrations
                     b.Navigation("Houses");
                 });
 
-            modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.HomeSituation", b =>
-                {
-                    b.Navigation("House")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.LocatedNearby", b =>
-                {
-                    b.Navigation("House")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.ThereIsInHouse", b =>
-                {
-                    b.Navigation("House")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("HouseSale.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Houses");
@@ -671,7 +662,13 @@ namespace HouseSale.Infrastructure.Migrations
 
             modelBuilder.Entity("HouseSale.Domain.Entities.House", b =>
                 {
+                    b.Navigation("Comfort");
+
+                    b.Navigation("HomeSituation");
+
                     b.Navigation("HouseImages");
+
+                    b.Navigation("LocatedNearby");
                 });
 #pragma warning restore 612, 618
         }

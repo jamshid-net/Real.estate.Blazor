@@ -13,6 +13,6 @@ public class ThereIsInHouse
     public bool Cellar { get; set; } = false;
     public bool Gym { get; set; } = false;
 
-    //public Guid HouseId { get; set; }
+    public Guid HouseId { get; set; }
     public virtual House House { get; set; }
 }

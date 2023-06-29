@@ -1,6 +1,7 @@
 ﻿namespace HouseSale.Domain.Entities.BoolTypeEntities;
 public class HomeSituation
 {
+
     public Guid HomeSituationId { get; set; }
     public bool Renovation { get; set; } = false;
     public bool Average { get; set; } = false;
@@ -9,6 +10,6 @@ public class HomeSituation
     public bool MakeupBeforeClean { get; set; } = false;
     public bool Perishable { get; set; } = false;
 
-    //public Guid HouseId { get; set; }
+    public Guid HouseId { get; set; }
     public virtual House House { get; set; }
 }
