@@ -1,5 +1,6 @@
-﻿
+
 using HouseSale.Application.Commons.Interfaces;
+
 using HouseSale.Domain.Entities;
 using MediatR;
 
