@@ -1,5 +1,4 @@
-﻿using HouseSale.Application.Commons.DtoModels;
-using HouseSale.Application.Commons.Interfaces;
+﻿using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

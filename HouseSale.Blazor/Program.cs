@@ -29,9 +29,8 @@ public class Program
 
 
       
-=======
+
         builder.Services.AddAuthentication().AddCookie();
->>>>>>> parent of 8fc4bbf (Fixed authorize)
         builder.Services.AddAuthorization();
 
 

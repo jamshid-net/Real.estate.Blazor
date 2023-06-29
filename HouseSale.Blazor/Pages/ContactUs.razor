@@ -4,7 +4,7 @@
 @inject NavigationManager NavigationManager
 
 @code {
-   
+
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
@@ -20,9 +20,6 @@
             NavigationManager.NavigateTo($"/login//contactus", forceLoad: false);
         }
     }
-        
-  
-    
 
 }
 
