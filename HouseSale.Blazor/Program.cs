@@ -1,4 +1,5 @@
 
+using HouseSale.Application;
 using HouseSale.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -17,7 +18,7 @@ public class Program
         });
 
 
-        
+        builder.Services.AddApplication();
        
         builder.Services.AddServerSideBlazor();
 
