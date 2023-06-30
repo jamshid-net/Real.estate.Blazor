@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HouseSale.Application.UseCases.Category.Commands;
-public class DeleteCategoryCommand
+namespace HouseSale.Application.UseCases.HouseImages.Commands;
+public class UpdateHouseImageCommand
 {
 }

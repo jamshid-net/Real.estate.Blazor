@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HouseSale.Application.UseCases.Category.Queries;
-public class GetAllCategoryQuery
+namespace HouseSale.Application.UseCases.HouseImages.Queries;
+public class GetByIdHouseImageQuery
 {
 }

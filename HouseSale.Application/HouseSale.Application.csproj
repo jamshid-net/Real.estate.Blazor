@@ -9,8 +9,12 @@
   <ItemGroup>
 
     <Compile Remove="UseCases\CategoryRentSales\Qu\**" />
+
+    <Compile Remove="UseCases\LocatedNearbys\**" />
     <EmbeddedResource Remove="UseCases\CategoryRentSales\Qu\**" />
+    <EmbeddedResource Remove="UseCases\LocatedNearbys\**" />
     <None Remove="UseCases\CategoryRentSales\Qu\**" />
+    <None Remove="UseCases\LocatedNearbys\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,7 +47,6 @@
 
     <Folder Include="UseCases\HomeSituations\Queries\" />
     <Folder Include="UseCases\Houses\Validations\" />
-    <Folder Include="UseCases\LocatedNearbys\" />
   </ItemGroup>
 
 </Project>

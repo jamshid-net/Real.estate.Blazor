@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HouseSale.Application.UseCases.CategoryRentSale.Commands;
-public class CreateCategoryRentSaleCommand
+namespace HouseSale.Application.UseCases.HouseImages.Commands;
+public class CreateHouseImageCommand
 {
 }
