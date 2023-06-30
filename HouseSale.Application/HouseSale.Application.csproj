@@ -42,7 +42,6 @@
 
     <Folder Include="UseCases\HomeSituations\Queries\" />
     <Folder Include="UseCases\Houses\Validations\" />
-    <Folder Include="UseCases\LocatedNearbys\" />
   </ItemGroup>
 
 </Project>

@@ -18,7 +18,7 @@ public class GetByIdThereIsInHouseQueryHandler : IRequestHandler<GetByIdThereIsI
     {
         var thereIsInHouse = await _context.ThereIsInHouses.FindAsync(new object[] { request.ThereIsInHouseId }, cancellationToken);
         if (thereIsInHouse is null)
-            throw new NotFoundException();
+            throw new NotFoundException(nameof(ThereIsInHouse), request.ThereIsInHouseId);
 
         return thereIsInHouse;
     }

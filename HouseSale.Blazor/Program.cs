@@ -1,5 +1,7 @@
 
 using HouseSale.Application;
+using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Blazor.Services;
 using HouseSale.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -19,7 +21,9 @@ public class Program
 
 
         builder.Services.AddApplication();
-       
+
+        builder.Services.AddScoped<IUser, CurrentUser>();
+
         builder.Services.AddServerSideBlazor();
 
         builder.Services.AddInfrastructure(builder.Configuration);

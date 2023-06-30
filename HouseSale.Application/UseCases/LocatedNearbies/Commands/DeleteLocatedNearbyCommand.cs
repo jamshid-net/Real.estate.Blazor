@@ -1,4 +1,5 @@
 ﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Domain.Entities.BoolTypeEntities;
 using MediatR;
 
 namespace HouseSale.Application.UseCases.LocatedNearbies.Commands;
@@ -17,7 +18,7 @@ public class DeleteLocatedNearbyCommandHandler : IRequestHandler<DeleteLocatedNe
     {
         var locatedNearby = await _context.LocatedNearbies.FindAsync(new object[] { request.LocatedNearbyId }, cancellationToken);
         if (locatedNearby is null)
-            throw new NotFoundException();
+            throw new NotFoundException(nameof(LocatedNearby), request.LocatedNearbyId);
 
         _context.LocatedNearbies.Remove(locatedNearby);
         await _context.SaveChangesAsync(cancellationToken);
