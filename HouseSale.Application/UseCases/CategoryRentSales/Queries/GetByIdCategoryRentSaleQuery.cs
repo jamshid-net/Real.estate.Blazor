@@ -18,7 +18,9 @@ public class GetByIdCategoryRentSaleQueryHandler : IRequestHandler<GetByIdCatego
     {
         var categoryRentSale = await _context.CategoryRentSales.FindAsync(new object[] { request.CategoryRentSaleId }, cancellationToken);
         if (categoryRentSale is null)
-            throw new NotFoundException();
+
+            throw new NotFoundException(nameof(CategoryRentSale), request.CategoryRentSaleId);
+
 
         return categoryRentSale;
     }

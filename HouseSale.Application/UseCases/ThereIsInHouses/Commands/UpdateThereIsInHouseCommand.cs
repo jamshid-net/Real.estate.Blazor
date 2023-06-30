@@ -1,4 +1,7 @@
-﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Application.Commons.Interfaces;
+
+using HouseSale.Domain.Entities.BoolTypeEntities;
+
 using MediatR;
 
 namespace HouseSale.Application.UseCases.ThereIsInHouses.Commands;
@@ -26,7 +29,9 @@ public class UpdateThereIsInHouseCommandHandler : IRequestHandler<UpdateThereIsI
     {
         var thereIsInHouse = await _context.ThereIsInHouses.FindAsync(new object[] { request.ThereIsInHouseId }, cancellationToken);
         if (thereIsInHouse is null)
-            throw new NotFoundException();
+
+            throw new NotFoundException(nameof(ThereIsInHouse), request.ThereIsInHouseId);
+
 
         thereIsInHouse.Ethernet = request.Ethernet;
         thereIsInHouse.Phone = request.Phone;
