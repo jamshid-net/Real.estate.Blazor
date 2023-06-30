@@ -1,4 +1,4 @@
-﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Domain.Entities;
 using MediatR;
 
@@ -22,4 +22,5 @@ public class GetByIdHouseImageQueryHandler : IRequestHandler<GetByIdHouseImageQu
         
         return houseImage;
     }
+
 }

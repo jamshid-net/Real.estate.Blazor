@@ -1,4 +1,4 @@
-﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Domain.Entities;
 using MediatR;
 
@@ -26,4 +26,5 @@ public class CreateHouseImageCommandHandler : IRequestHandler<CreateHouseImageCo
         await _context.SaveChangesAsync(cancellationToken);
         return houseImage.HouseImageId;
     }
+
 }

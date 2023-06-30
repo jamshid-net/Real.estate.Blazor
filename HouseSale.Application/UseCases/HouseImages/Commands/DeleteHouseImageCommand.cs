@@ -1,4 +1,4 @@
-﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Domain.Entities;
 using MediatR;
 
@@ -23,4 +23,5 @@ public class DeleteHouseImageCommandHandler : IRequestHandler<DeleteHouseImageCo
         _context.HouseImages.Remove(houseImage);
         await _context.SaveChangesAsync(cancellationToken);
     }
+
 }

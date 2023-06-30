@@ -1,4 +1,4 @@
-﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Domain.Entities;
 using MediatR;
 
@@ -27,4 +27,5 @@ public class UpdateHouseImageCommandHandler : IRequestHandler<UpdateHouseImageCo
 
         await _context.SaveChangesAsync(cancellationToken);
     }
+
 }
