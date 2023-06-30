@@ -9,11 +9,16 @@
   <ItemGroup>
 
     <Compile Remove="UseCases\CategoryRentSales\Qu\**" />
+
+    <Compile Remove="UseCases\LocatedNearbys\**" />
     <EmbeddedResource Remove="UseCases\CategoryRentSales\Qu\**" />
+    <EmbeddedResource Remove="UseCases\LocatedNearbys\**" />
     <None Remove="UseCases\CategoryRentSales\Qu\**" />
+    <None Remove="UseCases\LocatedNearbys\**" />
   </ItemGroup>
 
   <ItemGroup>
+
 
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
