@@ -1,4 +1,5 @@
 ﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Domain.Entities;
 using MediatR;
 
 namespace HouseSale.Application.UseCases.Addresses.Commands;
@@ -18,7 +19,7 @@ public class DeleteAddressCommandHandler : IRequestHandler<DeleteAddressCommand>
     {
         var foundAddress = await _context.Addresses.FindAsync(new object[] { request.AddressId }, cancellationToken);
         if (foundAddress is null)
-            throw new NotFoundException();
+            throw new NotFoundException(nameof(Address),request.AddressId);
 
         _context.Addresses.Remove(foundAddress);
 
