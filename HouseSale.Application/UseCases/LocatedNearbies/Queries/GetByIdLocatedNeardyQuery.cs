@@ -5,6 +5,7 @@ using MediatR;
 namespace HouseSale.Application.UseCases.LocatedNearbies.Queries;
 public class GetByIdLocatedNeardyQuery : IRequest<LocatedNearby>
 {
+
     public Guid LocatedNearbyId { get; set; }
 }
 
@@ -16,9 +17,11 @@ public class GetByIdLocatedNeardyQueryHandler : IRequestHandler<GetByIdLocatedNe
             => _context = context;
     public async Task<LocatedNearby> Handle(GetByIdLocatedNeardyQuery request, CancellationToken cancellationToken)
     {
+
         var locatedNearby = await _context.LocatedNearbies.FindAsync(new object[] { request.LocatedNearbyId }, cancellationToken);
         if (locatedNearby is null)
             throw new NotFoundException(nameof(LocatedNearby),request.LocatedNearbyId);
+
         
         return locatedNearby;
     }

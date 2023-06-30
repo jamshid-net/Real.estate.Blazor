@@ -1,5 +1,7 @@
 ﻿using HouseSale.Application.Commons.Interfaces;
+
 using HouseSale.Domain.Entities;
+
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,9 @@ public class UpdateCategoryRentSaleCommandHandler : IRequestHandler<UpdateCatego
     {
         var categoryRentSale = await _context.CategoryRentSales.FindAsync(new object[] { request.CategoryRentSaleId }, cancellationToken);
         if (categoryRentSale is null)
+
             throw new NotFoundException(nameof(CategoryRentSale), request.CategoryRentSaleId);
+
         categoryRentSale.CategoryRentSaleName = request.CategoryRentSaleName;
 
         await _context.SaveChangesAsync(cancellationToken);

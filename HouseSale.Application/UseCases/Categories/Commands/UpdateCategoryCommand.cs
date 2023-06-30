@@ -1,5 +1,7 @@
-﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Application.Commons.Interfaces;
+
 using HouseSale.Domain.Entities;
+
 using MediatR;
 
 namespace HouseSale.Application.UseCases.Categories.Commands;
@@ -20,7 +22,9 @@ public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryComman
     {
         var category = await _context.Categories.FindAsync(new object[] { request.CategoryId }, cancellationToken);
         if (category is null)
+
             throw new NotFoundException(nameof(Category), request.CategoryId);
+
 
         category.CategoryName = request.CategoryName;
 
