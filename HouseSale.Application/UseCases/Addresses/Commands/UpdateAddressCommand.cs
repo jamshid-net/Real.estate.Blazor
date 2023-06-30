@@ -33,6 +33,7 @@ public class UpdateAddressCommandHandler : IRequestHandler<UpdateAddressCommand>
         foundAddress.City = request.City;
         foundAddress.State = request.State;
         foundAddress.Country = request.Country;
+
         await _context.SaveChangesAsync(cancellationToken);
     }
 }
