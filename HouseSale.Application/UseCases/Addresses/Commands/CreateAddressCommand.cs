@@ -6,10 +6,10 @@ namespace HouseSale.Application.UseCases.Addresses.Commands;
 public class CreateAddressCommand:IRequest<Guid>
 {
 
-    public string Street { get; init; }
-    public string City { get; init; }
-    public string State { get; init; }
-    public string Country { get; init; }
+    public string Street { get; set; }
+    public string City { get; set; }
+    public string State { get; set; }
+    public string Country { get; set; }
 }
 
 public class CreateAddressCommandHandler : IRequestHandler<CreateAddressCommand,Guid>
