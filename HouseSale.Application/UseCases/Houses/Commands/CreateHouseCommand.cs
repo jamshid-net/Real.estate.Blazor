@@ -22,6 +22,7 @@ public class CreateHouseCommand:IRequest
     public int CountOfRoom { get;set; }
 
     public IFormFile MainImage { get;set; }
+
     public List<IBrowserFile> HouseImages { get;set; } = new(15);
 
     public CreateAddressCommand CreateAddressCommand { get; set; } = new();
@@ -61,6 +62,11 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
 
         string combinedPath = Path.Combine(rootpath + @"\HouseImages", filename);
 
+        using (var stream = new FileStream(combinedPath, FileMode.Create))
+        {
+            await request.MainImage.CopyToAsync(stream);
+
+
        
         House newHouse = new House
         {
@@ -83,6 +89,7 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
         };
         _context.Houses.Add(newHouse);
         await _context.SaveChangesAsync(cancellationToken);
+
 
         //var foundHouse = await _context.Houses.FindAsync(new object[] { newHouse.HouseId }, cancellationToken);
 
@@ -108,6 +115,8 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
         //    }
         //}
         //else throw new NotFoundException(nameof(House), newHouse.HouseId);
+
+       
 
     }
 }
