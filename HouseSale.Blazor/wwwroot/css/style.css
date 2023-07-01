@@ -639,13 +639,40 @@ a:focus {
   padding: 0 20px;
 }
 
-.sale_section .box {
-  margin-top: 45px;
-}
+    .sale_section .box {
+       width:95%;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        padding: 15px;
+        border-radius:4%;
+        margin-top: 45px;
+    }
 
-.sale_section .box .img-box img {
-  width: 100%;
-}
+        .sale_section .box .img-box {
+            overflow: hidden;
+            border-radius: 2%;
+            position:relative;
+        }
+            .sale_section .box .img-box .custom-postion {
+                position: absolute;
+                top: 8px;
+                right: 16px;
+                width:60px;
+                text-align:center;
+                border-radius:5px;
+            }
+            .sale_section .box .img-box img {
+                width: 100%;
+                border-radius: 2%;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                -webkit-transition: .3s ease-in-out;
+                transition: .3s ease-in-out;
+            }
+            .sale_section .box .img-box:hover img {
+                -webkit-transform: scale(1.3);
+                transform: scale(1.3);
+                border-radius: 2%;
+            }
 
 .sale_section .box .detail-box {
   margin-top: 10px;
