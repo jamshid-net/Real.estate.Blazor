@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
+
 namespace HouseSale.Blazor.PagesBase;
 
 public class CreateHouseBase:ComponentBase
@@ -22,6 +23,10 @@ public class CreateHouseBase:ComponentBase
         var model = context.Model as CreateHouseCommand;
 
        
+    }
+    protected async Task LoadMainImage(InputFileChangeEventArgs file)
+    {
+        
     }
 
 }

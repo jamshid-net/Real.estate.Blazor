@@ -39,7 +39,7 @@
     <Authorized Context="Auth">
         @Auth.User.Identity.Name
         <div class="container">
-            <EditForm Model="@CreateHouseCommand" OnValidSubmit="OnSubmitHouse">
+            <EditForm Model="@CreateHouseCommand"  OnValidSubmit="OnSubmitHouse">
                 <FluentValidationValidator @ref="_fluentValidationValidator" DisableAssemblyScanning="@true" />
                 <ValidationSummary />
                 <div class="form-group">
@@ -64,9 +64,9 @@
                 <div class="form-group">
                     <label>
                         Main image:
-                        <InputFile @bind-Value="@CreateHouseCommand.MainImage" class="form-control" />
-                        <ValidationMessage For="@(() => CreateHouseCommand.MainImage)" />
+                       
                     </label>
+                   <InputFile type="file"  class="form-control" @bind-value="@CreateHouseCommand.MainImage" />
                 </div>
 
                 @for (int i = 0; i < 10; i++)
