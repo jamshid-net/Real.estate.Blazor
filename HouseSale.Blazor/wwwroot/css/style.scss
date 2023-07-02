@@ -594,8 +594,9 @@ a:focus {
     margin-top: 45px;
 
     .img-box {
+     border-radius:90%;
       img {
-        width: 100%;
+        width: 90%;
       }
     }
 
@@ -658,7 +659,7 @@ a:focus {
       position: relative;
 
       img {
-        border-radius: 100%;
+        border-radius: 90%;
         width: 100%;
         border: 5px solid $primary2;
       }

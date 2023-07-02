@@ -7,12 +7,12 @@ public class CreateHomeSituationCommand:IRequest<Guid>
 
 
 {
-    public bool Renovation { get; init; }
-    public bool Average { get; init;}
-    public bool RepairRequired { get; init;}
-    public bool BlackPlaster { get; init;}
-    public bool MakeupBeforeClean { get; init;}
-    public bool Perishable { get; init;}
+    public bool Renovation { get; set; }
+    public bool Average { get; set;}
+    public bool RepairRequired { get; set;}
+    public bool BlackPlaster { get; set;}
+    public bool MakeupBeforeClean { get; set;}
+    public bool Perishable { get; set;}
 }
 
 public class CreateHomeSituationCommandHandler : IRequestHandler<CreateHomeSituationCommand,Guid>
