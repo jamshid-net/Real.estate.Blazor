@@ -1,4 +1,6 @@
+
 using FluentValidation;
+
 using HouseSale.Application.UseCases.Addresses.Commands;
 using HouseSale.Application.UseCases.Houses.Commands;
 
@@ -15,6 +17,7 @@ public class CreateHouseValidation:AbstractValidator<CreateHouseCommand>
         
 
        //RuleFor(x => x.MainImage.Length).GreaterThan(0).WithMessage("Please set image!").LessThan(2000).WithMessage("file size is big");
+
 
         
         RuleFor(x => x.CategoryId).NotNull().WithMessage("Please choose category");
