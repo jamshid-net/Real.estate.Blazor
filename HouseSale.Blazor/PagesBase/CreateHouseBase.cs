@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.ComponentModel.DataAnnotations;
 
+
+
+
 namespace HouseSale.Blazor.PagesBase;
 
 public class CreateHouseBase:ComponentBase
@@ -58,6 +61,12 @@ public class CreateHouseBase:ComponentBase
 
 
     
+
+    protected async Task LoadMainImage(InputFileChangeEventArgs file)
+    {
+        
+    }
+
 
 }
 public class HouseImageModel

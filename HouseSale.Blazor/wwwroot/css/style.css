@@ -656,7 +656,9 @@ a:focus {
                 position: absolute;
                 top: 8px;
                 right: 16px;
+
                 width:65px;
+
                 text-align:center;
                 border-radius:5px;
             }
