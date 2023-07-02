@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -10,9 +10,10 @@
     <Folder Include="Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+
     <Folder Include="wwwroot\css\" />
+
     <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\fonts\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\css\" />

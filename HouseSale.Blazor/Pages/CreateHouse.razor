@@ -1,4 +1,6 @@
-﻿@page "/createhouse"
+
+@page "/createhouse"
+
 @using HouseSale.Application.UseCases.Categories.Queries;
 @using HouseSale.Application.UseCases.CategoryRentSales.Queries;
 @using HouseSale.Blazor.PagesBase;
@@ -8,6 +10,7 @@
 @inherits CreateHouseBase
 @inject IMediator _meditor
 @code {
+
     private FluentValidationValidator? _fluentValidationValidator;
 
     [CascadingParameter]
@@ -19,12 +22,12 @@
 
     protected async override Task OnInitializedAsync()
     {
+
+        mediator = _meditor;
+        var authenticationState = await authenticationStateTask;
         categories = await _meditor.Send(new GetAllCategoryQuery());
 
         categoryRentSale = await _meditor.Send(new GetAllCategoryRentSaleQuery());
-        var authenticationState = await authenticationStateTask;
-
-        mediator = _meditor;
 
 
         if (!authenticationState.User.Identity.IsAuthenticated)
@@ -33,6 +36,10 @@
             NavigationManager.NavigateTo($"/identity/account/login?returnUrl=%2Fcreatehouse", forceLoad: true);
 
         }
+
+        houseImagemodel = new HouseImageModel();
+        editContext = new EditContext(houseImagemodel);
+
     }
 }
 <AuthorizeView>
@@ -44,111 +51,149 @@
 
                 <FluentValidationValidator @ref="_fluentValidationValidator" DisableAssemblyScanning="@true" />
                 <ValidationSummary />
-                <div class="form-group">
-                    <label>
-                        Price:
-                        <InputNumber @bind-Value="@CreateHouseCommand.Price" class="form-control" />
-                        <ValidationMessage For="@(() => CreateHouseCommand.Price)" />
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        Area:
-                        <InputNumber @bind-Value="@CreateHouseCommand.Area" class="form-control" />
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        Count of room:
-                        <InputNumber @bind-Value="@CreateHouseCommand.CountOfRoom" class="form-control" />
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        Main image:
-                    </label>
-                    <InputFile type="file" class="form-control" @bind-value="@CreateHouseCommand.MainImage" />
-
-                </div>
-
-                @for (int i = 0; i < 10; i++)
-                {
-                    <div class="form-group">
-                        <label>
-                            Image @i:
-                            <InputFile @bind-Value="@CreateHouseCommand.HouseImages" class="form-control" />
-
-                        </label>
-                    </div>
-                }
-                <div class="form-group">
-                    <label>
-                        Address street:
-                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.Street" class="form-control" />
-
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        City:
-                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.City" class="form-control" />
-
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        State:
-                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.State" class="form-control" />
-
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        Country:
-                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.Country" class="form-control" />
-
-                    </label>
-                </div>
-                <div class="form-group">
-                    <InputSelect @bind-Value="CreateHouseCommand.CategoryId" class="form-control">
-
-                        @if (CreateHouseCommand.CategoryId == null)
-                        {
-                            <option selected value="">None</option>
-                        }
-                        @foreach (var item in categories)
-                        {
-
-                            <option value="@item.CategoryId">@item.CategoryName</option>
-                        }
 
 
 
-                    </InputSelect>
-                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>
+                                        Price:
+                                        <InputNumber @bind-Value="@CreateHouseCommand.Price" class="form-control" />
+                                        <ValidationMessage For="@(() => CreateHouseCommand.Price)" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>
+                                        Area:
+                                        <InputNumber @bind-Value="@CreateHouseCommand.Area" class="form-control" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>
+                                        Count of room:
+                                        <InputNumber @bind-Value="@CreateHouseCommand.CountOfRoom" class="form-control" />
+                                    </label>
+                                </div>
+                            </div>
 
-                <InputRadioGroup @bind-Value="@CreateHouseCommand.CategoryRentSaleId">
-                    @foreach (var item in categoryRentSale)
-                    {
-                        <div class="form-group">
-
-                            <InputRadio id="@item.CategoryRentSaleName" class="form-check-input" Value="@item.CategoryRentSaleId" />
-                            <label for="@item.CategoryRentSaleName" class="form-check-label">
-                                @item.CategoryRentSaleName
-                            </label>
                         </div>
-                    }
-                </InputRadioGroup>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>
+                                        Address street:
+                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.Street" class="form-control" />
 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
 
+                                <div class="form-group">
+                                    <label>
+                                        City:
+                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.City" class="form-control" />
 
-                <div class="form-group">
-                    <label>
-                        Description:
-                        <InputText @bind-Value="@CreateHouseCommand.Description" class="form-control" />
-                    </label>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>
+                                        State:
+                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.State" class="form-control" />
+
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>
+                                        Country:
+                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.Country" class="form-control" />
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>
+                                        House category:
+                                        <InputSelect @bind-Value="CreateHouseCommand.CategoryId" class="form-control">
+
+                                            @if (CreateHouseCommand.CategoryId == null)
+                                            {
+                                                <option selected value="">None</option>
+                                            }
+                                            @foreach (var item in categories)
+                                            {
+
+                                                <option value="@item.CategoryId">@item.CategoryName</option>
+                                            }
+
+                                        </InputSelect>
+                                    </label>
+                                </div>
+                            </div>
+                            <InputRadioGroup @bind-Value="@CreateHouseCommand.CategoryRentSaleId">
+
+                                @foreach (var item in categoryRentSale)
+                                {
+                                    <div class="col mt-4">
+                                        <div class="form-group">
+                                            <InputRadio id="@item.CategoryRentSaleName" class="form-check-input" Value="@item.CategoryRentSaleId" />
+                                            <label for="@item.CategoryRentSaleName" class="radio-inline">
+                                                @item.CategoryRentSaleName
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+
+                            </InputRadioGroup>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <label class="custom-file-label">
+                                            Main image:
+                                        </label>
+                                        <InputFile multiple OnChange="UploadFileChange" class="custom-file-input" placeholder="" />
+                                        @* <ValidationMessage For="() => houseImagemodel.Picture" />*@
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="w-100">
+                                        Description:
+                                        <InputTextArea @bind-Value="@CreateHouseCommand.Description" class="form-control" />
+                                    </label>
+                                </div>
+                                <div class="form-group"><button type="submit" class="btn btn-primary">Submit</button> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+
+                    </div>
                 </div>
-                <div class="form-group"><button type="submit" class="btn btn-primary">Submit</button> </div>
+
             </EditForm>
         </div>
     </Authorized>
