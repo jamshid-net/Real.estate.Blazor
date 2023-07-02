@@ -17,6 +17,8 @@ public class CreateHouseBase:ComponentBase
 {
     protected CreateHouseCommand CreateHouseCommand = new();
 
+ 
+
 
 
 
@@ -31,7 +33,7 @@ public class CreateHouseBase:ComponentBase
     protected async Task OnSubmitHouse(EditContext context)
     {
         var model = context.Model as CreateHouseCommand;
-
+       
        
     }
     private IList<string> imageDataUrls = new List<string>();

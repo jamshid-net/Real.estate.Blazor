@@ -30,9 +30,9 @@ public class CreateHouseCommand:IRequest
 
     public Guid CategoryRentSaleId { get;set; }
 
-    public CreateHomeSituationCommand  CreateHomeSituationCommand { get;set; }
-    public CreateLocatedNearbyCommand CreateLocatedNearbyCommand { get; set; }
-    public CreateThereIsInHouseCommand CreateThereIsInHouseCommand { get;set; }
+    public CreateHomeSituationCommand  CreateHomeSituationCommand { get;set; } 
+    public CreateLocatedNearbyCommand CreateLocatedNearbyCommand { get; set; } = new(); 
+    public CreateThereIsInHouseCommand CreateThereIsInHouseCommand { get;set; } = new();
     
 
 

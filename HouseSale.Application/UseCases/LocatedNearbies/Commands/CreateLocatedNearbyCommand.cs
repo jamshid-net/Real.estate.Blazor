@@ -5,16 +5,16 @@ using MediatR;
 namespace HouseSale.Application.UseCases.LocatedNearbies.Commands;
 public class CreateLocatedNearbyCommand : IRequest<Guid>
 {
-    public bool Hospital { get; init; }
-    public bool Playground { get; init; }
-    public bool Kindergarten { get; init; }
-    public bool Stations { get; init; }
-    public bool Park { get; init; }
-    public bool EntertainmentInstitutions { get; init; }
-    public bool Restaurants { get; init; }
-    public bool Residence { get; init; }
-    public bool Supermarkets { get; init; }
-    public bool School { get; init; }
+    public bool Hospital { get; set; } = false;
+    public bool Playground { get; set;}=false;
+    public bool Kindergarten { get; set;}=false;
+    public bool Stations { get; set;}=false;
+    public bool Park { get; set;}=false;
+    public bool EntertainmentInstitutions { get; set;}=false;
+    public bool Restaurants { get; set;}=false;
+    public bool Residence { get; set;}=false;
+    public bool Supermarkets { get; set;}=false;
+    public bool School { get; set;}=false;
 }
 
 public class CreateLocatedNearbyCommandHandler : IRequestHandler<CreateLocatedNearbyCommand, Guid>
