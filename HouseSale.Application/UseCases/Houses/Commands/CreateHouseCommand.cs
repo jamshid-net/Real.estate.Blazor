@@ -33,9 +33,10 @@ public class CreateHouseCommand:IRequest
     public Guid CategoryRentSaleId { get;set; }
 
 
-    public CreateHomeSituationCommand  CreateHomeSituationCommand { get;set; }
-    public CreateLocatedNearbyCommand CreateLocatedNearbyCommand { get; set; }
-    public CreateThereIsInHouseCommand CreateThereIsInHouseCommand { get;set; }
+    public CreateHomeSituationCommand  CreateHomeSituationCommand { get;set; } 
+    public CreateLocatedNearbyCommand CreateLocatedNearbyCommand { get; set; } = new(); 
+    public CreateThereIsInHouseCommand CreateThereIsInHouseCommand { get;set; } = new();
+
     
 
 
@@ -55,10 +56,8 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
 
 
 
-
     public async Task Handle(CreateHouseCommand request, CancellationToken cancellationToken)
     {
-
        
         House newHouse = new House
         {
@@ -83,7 +82,6 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
         };
         _context.Houses.Add(newHouse);
         await _context.SaveChangesAsync(cancellationToken);
-
 
 
         var foundHouse = await _context.Houses.FindAsync(new object[] { newHouse.HouseId }, cancellationToken);

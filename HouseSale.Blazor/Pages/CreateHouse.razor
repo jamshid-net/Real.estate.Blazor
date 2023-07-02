@@ -38,6 +38,7 @@
         }
 
         houseImagemodel = new HouseImageModel();
+
         editContext = new EditContext(houseImagemodel);
 
 
@@ -193,74 +194,142 @@
                         </div>
                     </div>
                     <div class="col">
+
+                        <h6>Located nearby</h6>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <label class="control-label" for="hospital">
+                                        Hospital
+                                    </label>
+                                    <InputCheckbox id="hospital"  @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Hospital" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="playground">
+                                        Playground
+                                    </label>
+                                    <InputCheckbox id="playground" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Playground" />
+                                </div>
+                                 <div class="form-check">
+                                    <label class="control-label" for="kindergarden">
+                                        Kinder garden
+                                    </label>
+                                    <InputCheckbox id="kindergarden" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Kindergarten" />
+                                </div>
+                                 <div class="form-check">
+                                    <label class="control-label" for="station">
+                                        Bus station
+                                    </label>
+                                    <InputCheckbox id="station"  @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Stations" />
+                                </div>
+                                 <div class="form-check">
+                                    <label class="control-label" for="park">
+                                        Park
+                                    </label>
+                                    <InputCheckbox id="park"  @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Park" />
+                                </div>
+                                
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <label class="control-label" for="Institution">
+                                        Institutions
+                                    </label>
+                                    <InputCheckbox id="Institution" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.EntertainmentInstitutions" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Restaurants">
+                                        Restaurants
+                                    </label>
+                                    <InputCheckbox id="Restaurants" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Restaurants" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Residence">
+                                        Residence
+                                    </label>
+                                    <InputCheckbox id="Residence" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Residence" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Supermarkets">
+                                        Supermarkets
+                                    </label>
+                                    <InputCheckbox id="Supermarkets" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Supermarkets" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="School">
+                                        School
+                                    </label>
+                                    <InputCheckbox id="School" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.School" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <h6>There is in house</h6>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <label class="control-label" for="ethernet">
+                                        Ethernet
+                                    </label>
+                                    <InputCheckbox id="ethernet" @bind-Value="@CreateHouseCommand.CreateThereIsInHouseCommand.Ethernet" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Phone">
+                                        Phone line
+                                    </label>
+                                    <InputCheckbox id="Phone" @bind-Value="@CreateHouseCommand.CreateThereIsInHouseCommand.Phone" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Pool">
+                                        Pool
+                                    </label>
+                                    <InputCheckbox id="Pool" @bind-Value="@CreateHouseCommand.CreateThereIsInHouseCommand.Pool" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Garage">
+                                        Garage
+                                    </label>
+                                    <InputCheckbox id="Garage" @bind-Value="@CreateHouseCommand.CreateThereIsInHouseCommand.Garage" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Canalization">
+                                        Canalization
+                                    </label>
+                                    <InputCheckbox id="Canalization" @bind-Value="@CreateHouseCommand.CreateThereIsInHouseCommand.Canalization" />
+                                </div>
+
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <label class="control-label" for="GreenZone">
+                                        Green zone
+                                    </label>
+                                    <InputCheckbox id="GreenZone" @bind-Value="@CreateHouseCommand.CreateThereIsInHouseCommand.GreenZone" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Security">
+                                        Security
+                                    </label>
+                                    <InputCheckbox id="Security" @bind-Value="@CreateHouseCommand.CreateThereIsInHouseCommand.Security" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Cellar">
+                                        Cellar
+                                    </label>
+                                    <InputCheckbox id="Cellar" @bind-Value="@CreateHouseCommand.CreateThereIsInHouseCommand.Cellar" />
+                                </div>
+                                <div class="form-check">
+                                    <label class="control-label" for="Gym">
+                                        Gym
+                                    </label>
+                                    <InputCheckbox id="Gym" @bind-Value="@CreateHouseCommand.CreateThereIsInHouseCommand.Gym" />
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
-
-
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>
-                                        Address street:
-                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.Street" class="form-control" />
-
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col">
-
-                                <div class="form-group">
-                                    <label>
-                                        City:
-                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.City" class="form-control" />
-
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>
-                                        State:
-                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.State" class="form-control" />
-
-                                    </label>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <label class="custom-file-label">
-                                            Main image:
-                                        </label>
-                                        <InputFile multiple OnChange="UploadFileChange" class="custom-file-input" placeholder="" />
-                                        @* <ValidationMessage For="() => houseImagemodel.Picture" />*@
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="w-100">
-                                        Description:
-                                        <InputTextArea @bind-Value="@CreateHouseCommand.Description" class="form-control" />
-                                    </label>
-                                </div>
-                                <div class="form-group"><button type="submit" class="btn btn-primary">Submit</button> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-
+                      
 
             </EditForm>
         </div>
