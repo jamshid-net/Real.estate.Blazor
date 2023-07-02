@@ -1,4 +1,6 @@
-using Blazored.FluentValidation;
+
+﻿using Blazored.FluentValidation;
+
 using HouseSale.Application.UseCases.Categories.Queries;
 using HouseSale.Application.UseCases.CategoryRentSales.Queries;
 using HouseSale.Application.UseCases.Houses.Commands;
@@ -30,7 +32,7 @@ public class CreateHouseBase:ComponentBase
     protected async Task OnSubmitHouse(EditContext context)
     {
         var model = context.Model as CreateHouseCommand;
-
+       
        
     }
 
@@ -53,7 +55,6 @@ public class CreateHouseBase:ComponentBase
         editContext.NotifyFieldChanged(FieldIdentifier.Create(() => houseImagemodel.Picture));
 
     }
-
 
     
 

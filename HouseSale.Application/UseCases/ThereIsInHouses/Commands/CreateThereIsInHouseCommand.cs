@@ -5,15 +5,15 @@ using MediatR;
 namespace HouseSale.Application.UseCases.ThereIsInHouses.Commands;
 public class CreateThereIsInHouseCommand : IRequest<Guid>
 {
-    public bool Ethernet { get; init; }
-    public bool Phone { get; init; }
-    public bool Pool { get; init; }
-    public bool Garage { get; init; }
-    public bool Canalization { get; init; }
-    public bool GreenZone { get; init; }
-    public bool Security { get; init; }
-    public bool Cellar { get; init; }
-    public bool Gym { get; init; }
+    public bool Ethernet { get; set; }
+    public bool Phone { get; set; }
+    public bool Pool { get; set; }
+    public bool Garage { get; set; }
+    public bool Canalization { get; set; }
+    public bool GreenZone { get; set; }
+    public bool Security { get; set; }
+    public bool Cellar { get;set; }
+    public bool Gym { get; set; }
 }
 
 public class CreateThereIsInHouseCommandHandler : IRequestHandler<CreateThereIsInHouseCommand, Guid>
