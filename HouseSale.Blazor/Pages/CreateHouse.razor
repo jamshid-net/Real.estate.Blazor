@@ -1,4 +1,6 @@
+
 @page "/createhouse"
+
 @using HouseSale.Application.UseCases.Categories.Queries;
 @using HouseSale.Application.UseCases.CategoryRentSales.Queries;
 @using HouseSale.Blazor.PagesBase;
@@ -17,6 +19,7 @@
     public static List<Category> categories = new();
     public static List<CategoryRentSale> categoryRentSale = new();
 
+
     protected async override Task OnInitializedAsync()
     {
 
@@ -26,15 +29,18 @@
 
         categoryRentSale = await _meditor.Send(new GetAllCategoryRentSaleQuery());
 
+
         if (!authenticationState.User.Identity.IsAuthenticated)
         {
 
             NavigationManager.NavigateTo($"/identity/account/login?returnUrl=%2Fcreatehouse", forceLoad: true);
 
         }
+
         houseImagemodel = new HouseImageModel();
 
         editContext = new EditContext(houseImagemodel);
+
 
 
     }
@@ -320,12 +326,7 @@
                         </div>
                     </div>
                 </div>
-                                
-
-
-
-
-
+                      
 
             </EditForm>
         </div>

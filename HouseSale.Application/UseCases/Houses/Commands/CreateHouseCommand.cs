@@ -32,9 +32,11 @@ public class CreateHouseCommand:IRequest
 
     public Guid CategoryRentSaleId { get;set; }
 
+
     public CreateHomeSituationCommand  CreateHomeSituationCommand { get;set; } 
     public CreateLocatedNearbyCommand CreateLocatedNearbyCommand { get; set; } = new(); 
     public CreateThereIsInHouseCommand CreateThereIsInHouseCommand { get;set; } = new();
+
     
 
 
@@ -49,14 +51,13 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
         IMediator mediator, 
         IApplicationDbContext context,
         IUser currentUser)
+
           => (_mediator, _context,_currentUser) = (mediator, context,currentUser);
 
 
 
     public async Task Handle(CreateHouseCommand request, CancellationToken cancellationToken)
     {
-
-
        
         House newHouse = new House
         {
@@ -65,8 +66,9 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
             Price = request.Price,
             Area = request.Area,
             CountOfRoom = request.CountOfRoom,
+
             MainImage = request.MainImage,
-            
+
             AddressId = await _mediator.Send(request.CreateAddressCommand),
             CategoryId = request.CategoryId,
             CategoryRentSaleId = request.CategoryRentSaleId,
@@ -84,18 +86,18 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
 
         var foundHouse = await _context.Houses.FindAsync(new object[] { newHouse.HouseId }, cancellationToken);
 
+
         if (foundHouse is not null)
         {
             foreach (var photo in request.HouseImages)
             {
+
                 await _mediator.Send(new CreateHouseImageCommand() { HouseId = foundHouse.HouseId, ImagePath = photo });
             }
 
         }
         else throw new NotFoundException(nameof(House), newHouse.HouseId);
 
-
-       
 
     }
 }
