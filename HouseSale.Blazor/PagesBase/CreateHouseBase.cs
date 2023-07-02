@@ -1,4 +1,4 @@
-﻿using Blazored.FluentValidation;
+using Blazored.FluentValidation;
 using HouseSale.Application.UseCases.Categories.Queries;
 using HouseSale.Application.UseCases.CategoryRentSales.Queries;
 using HouseSale.Application.UseCases.Houses.Commands;
@@ -12,15 +12,11 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 
-
-
 namespace HouseSale.Blazor.PagesBase;
 
 public class CreateHouseBase:ComponentBase
 {
     protected CreateHouseCommand CreateHouseCommand = new();
-
-
 
 
     protected HouseImageModel houseImagemodel;
@@ -29,7 +25,7 @@ public class CreateHouseBase:ComponentBase
 
 
     protected EditContext editContext;
-  
+
 
     protected async Task OnSubmitHouse(EditContext context)
     {
@@ -37,6 +33,7 @@ public class CreateHouseBase:ComponentBase
 
        
     }
+
     private IList<string> imageDataUrls = new List<string>();
     private int Total;
     protected async Task UploadFileChange(InputFileChangeEventArgs file)
@@ -73,4 +70,5 @@ public class HouseImageModel
     [FileValidation(new[] { ".png", ".jpg" ,".jpeg" })]
     public IBrowserFile[] Picture { get; set; }
 }
+
 
