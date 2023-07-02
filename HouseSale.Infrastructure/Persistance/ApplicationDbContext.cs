@@ -15,7 +15,6 @@ public class ApplicationDbContext : IdentityDbContext<User>, IApplicationDbConte
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
-        
     }
     public DbSet<House> Houses { get; set; }
     public DbSet<Category> Categories {get;set;}

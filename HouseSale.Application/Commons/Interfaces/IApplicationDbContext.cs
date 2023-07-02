@@ -12,7 +12,7 @@ public interface IApplicationDbContext
     public DbSet<Address> Addresses { get; set; }
     public DbSet<HouseImage> HouseImages { get; set; }  
 
-    public DbSet<CategoryHomeSituation> HomeSituations { get; set; }
+    public DbSet<CategoryHomeSituation> HomeSituations { get; set; }    
 
     public DbSet<LocatedNearby> LocatedNearbies { get; set; }
 

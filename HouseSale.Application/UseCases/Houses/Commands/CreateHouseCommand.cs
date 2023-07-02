@@ -73,7 +73,7 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
             AddressId = await _mediator.Send(request.CreateAddressCommand),
             CategoryId = request.CategoryId,
             CategoryRentSaleId = request.CategoryRentSaleId,
-            HomeSituationId = await _mediator.Send(request.CreateHomeSituationCommand),
+            CategoryHomeSituationId = await _mediator.Send(request.CreateHomeSituationCommand),
             LocatedNearbyId = await _mediator.Send(request.CreateLocatedNearbyCommand),
             ThereIsInHouseId = await _mediator.Send(request.CreateThereIsInHouseCommand),
 

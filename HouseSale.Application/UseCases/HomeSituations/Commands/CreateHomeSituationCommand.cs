@@ -26,7 +26,7 @@ public class CreateHomeSituationCommandHandler : IRequestHandler<CreateHomeSitua
         };
         await _context.HomeSituations.AddAsync(homeSituation,cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
-        return homeSituation.HomeSituationId;
+        return homeSituation.CategoryHomeSituationId;
 
     }
 }
