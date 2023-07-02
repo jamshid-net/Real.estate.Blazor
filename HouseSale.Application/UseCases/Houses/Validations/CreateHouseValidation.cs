@@ -1,4 +1,6 @@
+
 using FluentValidation;
+
 using HouseSale.Application.UseCases.Addresses.Commands;
 using HouseSale.Application.UseCases.Houses.Commands;
 

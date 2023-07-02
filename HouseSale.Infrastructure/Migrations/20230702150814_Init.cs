@@ -46,8 +46,8 @@ namespace HouseSale.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    FullName = table.Column<string>(type: "text", nullable: false),
-                    ProfilePicture = table.Column<string>(type: "text", nullable: false),
+                    FullName = table.Column<string>(type: "text", nullable: true),
+                    ProfilePicture = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -93,6 +93,39 @@ namespace HouseSale.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "HomeSituations",
+                columns: table => new
+                {
+                    CategoryHomeSituationId = table.Column<Guid>(type: "uuid", nullable: false),
+                    HomeSituationName = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HomeSituations", x => x.CategoryHomeSituationId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LocatedNearbies",
+                columns: table => new
+                {
+                    LocatedNearbyId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Hospital = table.Column<bool>(type: "boolean", nullable: false),
+                    Playground = table.Column<bool>(type: "boolean", nullable: false),
+                    Kindergarten = table.Column<bool>(type: "boolean", nullable: false),
+                    Stations = table.Column<bool>(type: "boolean", nullable: false),
+                    Park = table.Column<bool>(type: "boolean", nullable: false),
+                    EntertainmentInstitutions = table.Column<bool>(type: "boolean", nullable: false),
+                    Restaurants = table.Column<bool>(type: "boolean", nullable: false),
+                    Residence = table.Column<bool>(type: "boolean", nullable: false),
+                    Supermarkets = table.Column<bool>(type: "boolean", nullable: false),
+                    School = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LocatedNearbies", x => x.LocatedNearbyId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PageEntities",
                 columns: table => new
                 {
@@ -118,6 +151,26 @@ namespace HouseSale.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SocialContacts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ThereIsInHouses",
+                columns: table => new
+                {
+                    ThereIsInHouseId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Ethernet = table.Column<bool>(type: "boolean", nullable: false),
+                    Phone = table.Column<bool>(type: "boolean", nullable: false),
+                    Pool = table.Column<bool>(type: "boolean", nullable: false),
+                    Garage = table.Column<bool>(type: "boolean", nullable: false),
+                    Canalization = table.Column<bool>(type: "boolean", nullable: false),
+                    GreenZone = table.Column<bool>(type: "boolean", nullable: false),
+                    Security = table.Column<bool>(type: "boolean", nullable: false),
+                    Cellar = table.Column<bool>(type: "boolean", nullable: false),
+                    Gym = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ThereIsInHouses", x => x.ThereIsInHouseId);
                 });
 
             migrationBuilder.CreateTable(
@@ -239,6 +292,9 @@ namespace HouseSale.Infrastructure.Migrations
                     AddressId = table.Column<Guid>(type: "uuid", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uuid", nullable: false),
                     CategoryRentSaleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CategoryHomeSituationId = table.Column<Guid>(type: "uuid", nullable: false),
+                    LocatedNearbyId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ThereIsInHouseId = table.Column<Guid>(type: "uuid", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -263,29 +319,23 @@ namespace HouseSale.Infrastructure.Migrations
                         principalTable: "CategoryRentSales",
                         principalColumn: "CategoryRentSaleId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HomeSituations",
-                columns: table => new
-                {
-                    HomeSituationId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Renovation = table.Column<bool>(type: "boolean", nullable: false),
-                    Average = table.Column<bool>(type: "boolean", nullable: false),
-                    RepairRequired = table.Column<bool>(type: "boolean", nullable: false),
-                    BlackPlaster = table.Column<bool>(type: "boolean", nullable: false),
-                    MakeupBeforeClean = table.Column<bool>(type: "boolean", nullable: false),
-                    Perishable = table.Column<bool>(type: "boolean", nullable: false),
-                    HouseId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HomeSituations", x => x.HomeSituationId);
                     table.ForeignKey(
-                        name: "FK_HomeSituations_Houses_HouseId",
-                        column: x => x.HouseId,
-                        principalTable: "Houses",
-                        principalColumn: "HouseId",
+                        name: "FK_Houses_HomeSituations_CategoryHomeSituationId",
+                        column: x => x.CategoryHomeSituationId,
+                        principalTable: "HomeSituations",
+                        principalColumn: "CategoryHomeSituationId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Houses_LocatedNearbies_LocatedNearbyId",
+                        column: x => x.LocatedNearbyId,
+                        principalTable: "LocatedNearbies",
+                        principalColumn: "LocatedNearbyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Houses_ThereIsInHouses_ThereIsInHouseId",
+                        column: x => x.ThereIsInHouseId,
+                        principalTable: "ThereIsInHouses",
+                        principalColumn: "ThereIsInHouseId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -302,61 +352,6 @@ namespace HouseSale.Infrastructure.Migrations
                     table.PrimaryKey("PK_HouseImages", x => x.HouseImageId);
                     table.ForeignKey(
                         name: "FK_HouseImages_Houses_HouseId",
-                        column: x => x.HouseId,
-                        principalTable: "Houses",
-                        principalColumn: "HouseId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LocatedNearbies",
-                columns: table => new
-                {
-                    LocatedNearbyId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Hospital = table.Column<bool>(type: "boolean", nullable: false),
-                    Playground = table.Column<bool>(type: "boolean", nullable: false),
-                    Kindergarten = table.Column<bool>(type: "boolean", nullable: false),
-                    Stations = table.Column<bool>(type: "boolean", nullable: false),
-                    Park = table.Column<bool>(type: "boolean", nullable: false),
-                    EntertainmentInstitutions = table.Column<bool>(type: "boolean", nullable: false),
-                    Restaurants = table.Column<bool>(type: "boolean", nullable: false),
-                    Residence = table.Column<bool>(type: "boolean", nullable: false),
-                    Supermarkets = table.Column<bool>(type: "boolean", nullable: false),
-                    School = table.Column<bool>(type: "boolean", nullable: false),
-                    HouseId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LocatedNearbies", x => x.LocatedNearbyId);
-                    table.ForeignKey(
-                        name: "FK_LocatedNearbies_Houses_HouseId",
-                        column: x => x.HouseId,
-                        principalTable: "Houses",
-                        principalColumn: "HouseId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ThereIsInHouses",
-                columns: table => new
-                {
-                    ThereIsInHouseId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Ethernet = table.Column<bool>(type: "boolean", nullable: false),
-                    Phone = table.Column<bool>(type: "boolean", nullable: false),
-                    Pool = table.Column<bool>(type: "boolean", nullable: false),
-                    Garage = table.Column<bool>(type: "boolean", nullable: false),
-                    Canalization = table.Column<bool>(type: "boolean", nullable: false),
-                    GreenZone = table.Column<bool>(type: "boolean", nullable: false),
-                    Security = table.Column<bool>(type: "boolean", nullable: false),
-                    Cellar = table.Column<bool>(type: "boolean", nullable: false),
-                    Gym = table.Column<bool>(type: "boolean", nullable: false),
-                    HouseId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ThereIsInHouses", x => x.ThereIsInHouseId);
-                    table.ForeignKey(
-                        name: "FK_ThereIsInHouses_Houses_HouseId",
                         column: x => x.HouseId,
                         principalTable: "Houses",
                         principalColumn: "HouseId",
@@ -401,12 +396,6 @@ namespace HouseSale.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_HomeSituations_HouseId",
-                table: "HomeSituations",
-                column: "HouseId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_HouseImages_HouseId",
                 table: "HouseImages",
                 column: "HouseId");
@@ -415,6 +404,11 @@ namespace HouseSale.Infrastructure.Migrations
                 name: "IX_Houses_AddressId",
                 table: "Houses",
                 column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Houses_CategoryHomeSituationId",
+                table: "Houses",
+                column: "CategoryHomeSituationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Houses_CategoryId",
@@ -427,15 +421,15 @@ namespace HouseSale.Infrastructure.Migrations
                 column: "CategoryRentSaleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LocatedNearbies_HouseId",
-                table: "LocatedNearbies",
-                column: "HouseId",
+                name: "IX_Houses_LocatedNearbyId",
+                table: "Houses",
+                column: "LocatedNearbyId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ThereIsInHouses_HouseId",
-                table: "ThereIsInHouses",
-                column: "HouseId",
+                name: "IX_Houses_ThereIsInHouseId",
+                table: "Houses",
+                column: "ThereIsInHouseId",
                 unique: true);
         }
 
@@ -458,22 +452,13 @@ namespace HouseSale.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "HomeSituations");
-
-            migrationBuilder.DropTable(
                 name: "HouseImages");
-
-            migrationBuilder.DropTable(
-                name: "LocatedNearbies");
 
             migrationBuilder.DropTable(
                 name: "PageEntities");
 
             migrationBuilder.DropTable(
                 name: "SocialContacts");
-
-            migrationBuilder.DropTable(
-                name: "ThereIsInHouses");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -492,6 +477,15 @@ namespace HouseSale.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "CategoryRentSales");
+
+            migrationBuilder.DropTable(
+                name: "HomeSituations");
+
+            migrationBuilder.DropTable(
+                name: "LocatedNearbies");
+
+            migrationBuilder.DropTable(
+                name: "ThereIsInHouses");
         }
     }
 }
