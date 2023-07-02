@@ -42,10 +42,13 @@
     <Authorized Context="Auth">
         @Auth.User.Identity.Name
         <div class="container">
+
             <EditForm Model="@CreateHouseCommand" OnValidSubmit="OnSubmitHouse">
 
                 <FluentValidationValidator @ref="_fluentValidationValidator" DisableAssemblyScanning="@true" />
                 <ValidationSummary />
+
+
 
                 <div class="row">
                     <div class="col">

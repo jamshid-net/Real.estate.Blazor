@@ -22,8 +22,10 @@ public class CreateHouseCommand:IRequest
 
     public int CountOfRoom { get;set; }
 
+
     public string MainImage { get;set; }
     public List<string> HouseImages { get;set; } = new(15);
+
 
     public CreateAddressCommand CreateAddressCommand { get; set; } = new();
     public Guid CategoryId { get;set; } 
@@ -54,6 +56,7 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
     public async Task Handle(CreateHouseCommand request, CancellationToken cancellationToken)
     {
 
+
        
         House newHouse = new House
         {
@@ -78,6 +81,7 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
         _context.Houses.Add(newHouse);
         await _context.SaveChangesAsync(cancellationToken);
 
+
         var foundHouse = await _context.Houses.FindAsync(new object[] { newHouse.HouseId }, cancellationToken);
 
         if (foundHouse is not null)
@@ -89,6 +93,7 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
 
         }
         else throw new NotFoundException(nameof(House), newHouse.HouseId);
+
 
        
 
