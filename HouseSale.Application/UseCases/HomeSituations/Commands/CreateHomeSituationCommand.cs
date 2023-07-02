@@ -1,18 +1,13 @@
 ﻿using HouseSale.Application.Commons.Interfaces;
-using HouseSale.Domain.Entities.BoolTypeEntities;
+using HouseSale.Domain.Entities;
 using MediatR;
 
 namespace HouseSale.Application.UseCases.HomeSituations.Commands;
 public class CreateHomeSituationCommand:IRequest<Guid>
-
-
 {
-    public bool Renovation { get; set; }
-    public bool Average { get; set;}
-    public bool RepairRequired { get; set;}
-    public bool BlackPlaster { get; set;}
-    public bool MakeupBeforeClean { get; set;}
-    public bool Perishable { get; set;}
+
+    public string HomeSituationName { get; set; }
+
 }
 
 public class CreateHomeSituationCommandHandler : IRequestHandler<CreateHomeSituationCommand,Guid>
@@ -27,19 +22,13 @@ public class CreateHomeSituationCommandHandler : IRequestHandler<CreateHomeSitua
 
     public async Task<Guid> Handle(CreateHomeSituationCommand request, CancellationToken cancellationToken)
     {
-        HomeSituation homeSituation = new HomeSituation
+        CategoryHomeSituation homeSituation = new CategoryHomeSituation
         {
-            HomeSituationId = Guid.NewGuid(),
-            Renovation = request.Renovation,
-            Average = request.Average,
-            RepairRequired = request.RepairRequired,
-            BlackPlaster = request.BlackPlaster,
-            MakeupBeforeClean = request.MakeupBeforeClean,
-            Perishable = request.Perishable
+            HomeSituationName = request.HomeSituationName
         };
         await _context.HomeSituations.AddAsync(homeSituation,cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
-        return homeSituation.HomeSituationId;
+        return homeSituation.CategoryHomeSituationId;
 
     }
 }

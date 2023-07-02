@@ -19,16 +19,16 @@
     public static List<Category> categories = new();
     public static List<CategoryRentSale> categoryRentSale = new();
 
-
     protected async override Task OnInitializedAsync()
     {
+
 
         mediator = _meditor;
         var authenticationState = await authenticationStateTask;
         categories = await _meditor.Send(new GetAllCategoryQuery());
 
-        categoryRentSale = await _meditor.Send(new GetAllCategoryRentSaleQuery());
 
+        categoryRentSale = await _meditor.Send(new GetAllCategoryRentSaleQuery());
 
         if (!authenticationState.User.Identity.IsAuthenticated)
         {
@@ -85,6 +85,7 @@
                                     </label>
                                 </div>
                             </div>
+
 
                         </div>
                         <div class="row">
@@ -193,6 +194,7 @@
                         </div>
                     </div>
                     <div class="col">
+
                         <h6>Located nearby</h6>
                         <div class="row">
                             <div class="col-4">
@@ -324,6 +326,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                       

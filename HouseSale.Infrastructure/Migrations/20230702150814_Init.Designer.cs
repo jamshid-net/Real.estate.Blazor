@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HouseSale.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230629181747_Init3")]
-    partial class Init3
+    [Migration("20230702150814_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,35 +53,6 @@ namespace HouseSale.Infrastructure.Migrations
                     b.HasKey("AddressId");
 
                     b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.HomeSituation", b =>
-                {
-                    b.Property<Guid>("HomeSituationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("Average")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("BlackPlaster")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("MakeupBeforeClean")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("Perishable")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("Renovation")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("RepairRequired")
-                        .HasColumnType("boolean");
-
-                    b.HasKey("HomeSituationId");
-
-                    b.ToTable("HomeSituations");
                 });
 
             modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.LocatedNearby", b =>
@@ -178,6 +149,21 @@ namespace HouseSale.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("HouseSale.Domain.Entities.CategoryHomeSituation", b =>
+                {
+                    b.Property<Guid>("CategoryHomeSituationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("HomeSituationName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("CategoryHomeSituationId");
+
+                    b.ToTable("HomeSituations");
+                });
+
             modelBuilder.Entity("HouseSale.Domain.Entities.CategoryRentSale", b =>
                 {
                     b.Property<Guid>("CategoryRentSaleId")
@@ -205,6 +191,9 @@ namespace HouseSale.Infrastructure.Migrations
                     b.Property<float>("Area")
                         .HasColumnType("real");
 
+                    b.Property<Guid>("CategoryHomeSituationId")
+                        .HasColumnType("uuid");
+
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uuid");
 
@@ -223,9 +212,6 @@ namespace HouseSale.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("HomeSituationId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid>("LocatedNearbyId")
                         .HasColumnType("uuid");
 
@@ -243,12 +229,11 @@ namespace HouseSale.Infrastructure.Migrations
 
                     b.HasIndex("AddressId");
 
+                    b.HasIndex("CategoryHomeSituationId");
+
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CategoryRentSaleId");
-
-                    b.HasIndex("HomeSituationId")
-                        .IsUnique();
 
                     b.HasIndex("LocatedNearbyId")
                         .IsUnique();
@@ -534,6 +519,12 @@ namespace HouseSale.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HouseSale.Domain.Entities.CategoryHomeSituation", "CategoryHomeSituation")
+                        .WithMany("Houses")
+                        .HasForeignKey("CategoryHomeSituationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("HouseSale.Domain.Entities.Category", "Category")
                         .WithMany("Houses")
                         .HasForeignKey("CategoryId")
@@ -543,12 +534,6 @@ namespace HouseSale.Infrastructure.Migrations
                     b.HasOne("HouseSale.Domain.Entities.CategoryRentSale", "CategoryRentSale")
                         .WithMany("Houses")
                         .HasForeignKey("CategoryRentSaleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HouseSale.Domain.Entities.BoolTypeEntities.HomeSituation", "HomeSituation")
-                        .WithOne("House")
-                        .HasForeignKey("HouseSale.Domain.Entities.House", "HomeSituationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -568,11 +553,11 @@ namespace HouseSale.Infrastructure.Migrations
 
                     b.Navigation("Category");
 
+                    b.Navigation("CategoryHomeSituation");
+
                     b.Navigation("CategoryRentSale");
 
                     b.Navigation("Comfort");
-
-                    b.Navigation("HomeSituation");
 
                     b.Navigation("LocatedNearby");
                 });
@@ -644,12 +629,6 @@ namespace HouseSale.Infrastructure.Migrations
                     b.Navigation("Houses");
                 });
 
-            modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.HomeSituation", b =>
-                {
-                    b.Navigation("House")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("HouseSale.Domain.Entities.BoolTypeEntities.LocatedNearby", b =>
                 {
                     b.Navigation("House")
@@ -663,6 +642,11 @@ namespace HouseSale.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("HouseSale.Domain.Entities.Category", b =>
+                {
+                    b.Navigation("Houses");
+                });
+
+            modelBuilder.Entity("HouseSale.Domain.Entities.CategoryHomeSituation", b =>
                 {
                     b.Navigation("Houses");
                 });
