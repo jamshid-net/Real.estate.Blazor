@@ -1,4 +1,6 @@
+
 @page "/createhouse"
+
 @using HouseSale.Application.UseCases.Categories.Queries;
 @using HouseSale.Application.UseCases.CategoryRentSales.Queries;
 @using HouseSale.Blazor.PagesBase;
@@ -20,9 +22,11 @@
     protected async override Task OnInitializedAsync()
     {
 
+
         mediator = _meditor;
         var authenticationState = await authenticationStateTask;
         categories = await _meditor.Send(new GetAllCategoryQuery());
+
 
         categoryRentSale = await _meditor.Send(new GetAllCategoryRentSaleQuery());
 
@@ -32,8 +36,10 @@
             NavigationManager.NavigateTo($"/identity/account/login?returnUrl=%2Fcreatehouse", forceLoad: true);
 
         }
+
         houseImagemodel = new HouseImageModel();
         editContext = new EditContext(houseImagemodel);
+
 
 
     }
@@ -78,6 +84,7 @@
                                     </label>
                                 </div>
                             </div>
+
 
                         </div>
                         <div class="row">
@@ -191,9 +198,68 @@
 
 
 
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>
+                                        Address street:
+                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.Street" class="form-control" />
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <label>
+                                        City:
+                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.City" class="form-control" />
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>
+                                        State:
+                                        <InputText @bind-Value="@CreateHouseCommand.CreateAddressCommand.State" class="form-control" />
+
+                                    </label>
+                                </div>
+                            </div>
 
 
 
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <label class="custom-file-label">
+                                            Main image:
+                                        </label>
+                                        <InputFile multiple OnChange="UploadFileChange" class="custom-file-input" placeholder="" />
+                                        @* <ValidationMessage For="() => houseImagemodel.Picture" />*@
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="w-100">
+                                        Description:
+                                        <InputTextArea @bind-Value="@CreateHouseCommand.Description" class="form-control" />
+                                    </label>
+                                </div>
+                                <div class="form-group"><button type="submit" class="btn btn-primary">Submit</button> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
 
 
             </EditForm>

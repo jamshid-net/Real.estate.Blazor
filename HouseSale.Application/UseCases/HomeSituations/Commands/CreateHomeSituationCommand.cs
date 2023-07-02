@@ -5,7 +5,9 @@ using MediatR;
 namespace HouseSale.Application.UseCases.HomeSituations.Commands;
 public class CreateHomeSituationCommand:IRequest<Guid>
 {
+
     public string HomeSituationName { get; set; }
+
 }
 
 public class CreateHomeSituationCommandHandler : IRequestHandler<CreateHomeSituationCommand,Guid>
