@@ -1,4 +1,4 @@
-﻿@page "/createhouse"
+@page "/createhouse"
 @using HouseSale.Application.UseCases.Categories.Queries;
 @using HouseSale.Application.UseCases.CategoryRentSales.Queries;
 @using HouseSale.Blazor.PagesBase;
@@ -43,6 +43,7 @@
         @Auth.User.Identity.Name
         <div class="container">
             <EditForm Model="@CreateHouseCommand" OnValidSubmit="OnSubmitHouse">
+
                 <FluentValidationValidator @ref="_fluentValidationValidator" DisableAssemblyScanning="@true" />
                 <ValidationSummary />
 

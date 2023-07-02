@@ -90,5 +90,7 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
         }
         else throw new NotFoundException(nameof(House), newHouse.HouseId);
 
+       
+
     }
 }
