@@ -18,7 +18,6 @@ public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryComman
     {
         Category? category = await _context.Categories.FindAsync(new object[] { request.CategoryId }, cancellationToken);
         if (category is null)
-
             throw new NotFoundException(nameof(Category), request.CategoryId);
 
 
