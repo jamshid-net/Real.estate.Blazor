@@ -1,4 +1,4 @@
-﻿using HouseSale.Application.Commons.Interfaces;
+using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -13,4 +13,5 @@ public class GetAllHouseImageQueryHandler : IRequestHandler<GetAllHouseImageQuer
         => _context = context;
     public async Task<List<HouseImage>> Handle(GetAllHouseImageQuery request, CancellationToken cancellationToken)
         => await _context.HouseImages.AsNoTracking().ToListAsync(cancellationToken);
+
 }
