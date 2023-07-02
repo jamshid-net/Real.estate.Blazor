@@ -23,7 +23,7 @@ public class House
     public virtual CategoryRentSale CategoryRentSale { get; set; }
 
     public Guid HomeSituationId { get; set; }
-    public virtual HomeSituation? HomeSituation { get; set; }
+    public virtual CategoryHomeSituation? HomeSituation { get; set; }
 
     public Guid LocatedNearbyId { get; set; }
     public virtual LocatedNearby? LocatedNearby { get; set; }
