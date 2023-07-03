@@ -170,13 +170,24 @@
                             </InputRadioGroup>
 
                         </div>
-
+                        <div class="row">
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <InputFile id="imageUpload" OnChange="UploadSingleImage" />
+                                  <label for="imageUpload"></label>
+                                </div>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview"  style="background-image: url(@singleImageUrl);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <div class="custom-file">
                                         <label class="custom-file-label">
-                                            Main image:
+                                            You can select many images!
                                         </label>
                                         <InputFile multiple  OnChange="UploadFileChange" class="custom-file-input" placeholder="" />
                                         @* <ValidationMessage For="() => houseImagemodel.Picture" />*@
@@ -196,6 +207,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
