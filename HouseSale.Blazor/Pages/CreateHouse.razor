@@ -1,14 +1,17 @@
-
 @page "/createhouse"
 
+@using HouseSale.Application.Commons.Interfaces;
 @using HouseSale.Application.UseCases.Categories.Queries;
 @using HouseSale.Application.UseCases.CategoryRentSales.Queries;
+@using HouseSale.Application.UseCases.HomeSituations.Queries;
+@using HouseSale.Blazor.Models;
 @using HouseSale.Blazor.PagesBase;
 @using HouseSale.Domain.Entities;
 @using MediatR;
 @inject NavigationManager NavigationManager
 @inherits CreateHouseBase
 @inject IMediator _meditor;
+@inject IUser currentuser;
 @code {
 
     private FluentValidationValidator? _fluentValidationValidator;
@@ -18,18 +21,19 @@
 
     public static List<Category> categories = new();
     public static List<CategoryRentSale> categoryRentSale = new();
-
+    public static List<CategoryHomeSituation> homeSituations = new();
 
     protected async override Task OnInitializedAsync()
     {
+
 
         mediator = _meditor;
         var authenticationState = await authenticationStateTask;
         categories = await _meditor.Send(new GetAllCategoryQuery());
 
+
         categoryRentSale = await _meditor.Send(new GetAllCategoryRentSaleQuery());
-
-
+        homeSituations = await _meditor.Send(new GetAllHomeSituationQuery());
         if (!authenticationState.User.Identity.IsAuthenticated)
         {
 
@@ -48,6 +52,9 @@
 <AuthorizeView>
     <Authorized Context="Auth">
         @Auth.User.Identity.Name
+        @currentuser.Id;
+
+        
         <div class="container">
 
             <EditForm Model="@CreateHouseCommand" OnValidSubmit="OnSubmitHouse">
@@ -85,6 +92,7 @@
                                     </label>
                                 </div>
                             </div>
+
 
                         </div>
                         <div class="row">
@@ -132,12 +140,9 @@
                                 <div class="form-group">
                                     <label>
                                         House category:
-                                        <InputSelect @bind-Value="CreateHouseCommand.CategoryId" class="form-control">
+                                        <InputSelect class="form-control"  @bind-Value="CreateHouseCommand.CategoryId">
+                                            <option value="" selected disabled hidden>Select one..</option>
 
-                                            @if (CreateHouseCommand.CategoryId == null)
-                                            {
-                                                <option selected value="">None</option>
-                                            }
                                             @foreach (var item in categories)
                                             {
 
@@ -173,10 +178,21 @@
                                         <label class="custom-file-label">
                                             Main image:
                                         </label>
-                                        <InputFile multiple OnChange="UploadFileChange" class="custom-file-input" placeholder="" />
+                                        <InputFile multiple  OnChange="UploadFileChange" class="custom-file-input" placeholder="" />
                                         @* <ValidationMessage For="() => houseImagemodel.Picture" />*@
                                     </div>
-
+                                    @if (imageDataUrls.Count > 0)
+                                    {
+                                       
+                                        <div class="card" style="width:30rem;">
+                                            <div class="card-body">
+                                                @foreach (var imageDataUrl in imageDataUrls)
+                                                {
+                                                    <p><img class="rounded m-1" src="@imageDataUrl" /></p>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -193,6 +209,21 @@
                         </div>
                     </div>
                     <div class="col">
+                        <div class="form-group">
+                            <label>
+                                Repair situtation:
+                                <InputSelect @bind-Value="@CreateHouseCommand.CategoryHomeSituationId"  class="form-control">
+                                    <option value="" selected disabled hidden>Select one..</option>
+
+                                    @foreach (var item in homeSituations)
+                                    {
+
+                                        <option value="@item.CategoryHomeSituationId">@item.HomeSituationName</option>
+                                    }
+                                </InputSelect>
+                            </label>
+                        </div>
+
                         <h6>Located nearby</h6>
                         <div class="row">
                             <div class="col-4">
@@ -200,7 +231,7 @@
                                     <label class="control-label" for="hospital">
                                         Hospital
                                     </label>
-                                    <InputCheckbox id="hospital"  @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Hospital" />
+                                    <InputCheckbox id="hospital" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Hospital" />
                                 </div>
                                 <div class="form-check">
                                     <label class="control-label" for="playground">
@@ -208,25 +239,25 @@
                                     </label>
                                     <InputCheckbox id="playground" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Playground" />
                                 </div>
-                                 <div class="form-check">
+                                <div class="form-check">
                                     <label class="control-label" for="kindergarden">
                                         Kinder garden
                                     </label>
                                     <InputCheckbox id="kindergarden" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Kindergarten" />
                                 </div>
-                                 <div class="form-check">
+                                <div class="form-check">
                                     <label class="control-label" for="station">
                                         Bus station
                                     </label>
-                                    <InputCheckbox id="station"  @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Stations" />
+                                    <InputCheckbox id="station" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Stations" />
                                 </div>
-                                 <div class="form-check">
+                                <div class="form-check">
                                     <label class="control-label" for="park">
                                         Park
                                     </label>
-                                    <InputCheckbox id="park"  @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Park" />
+                                    <InputCheckbox id="park" @bind-Value="@CreateHouseCommand.CreateLocatedNearbyCommand.Park" />
                                 </div>
-                                
+
                             </div>
                             <div class="col-4">
                                 <div class="form-check">
@@ -324,9 +355,9 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-                      
 
             </EditForm>
         </div>

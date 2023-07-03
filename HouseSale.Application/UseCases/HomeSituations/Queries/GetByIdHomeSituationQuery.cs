@@ -1,18 +1,13 @@
 ﻿using HouseSale.Application.Commons.Interfaces;
-using HouseSale.Domain.Entities.BoolTypeEntities;
+using HouseSale.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HouseSale.Application.UseCases.HomeSituations.Queries;
-public class GetByIdHomeSituationQuery:IRequest<HomeSituation>
+public class GetByIdHomeSituationQuery:IRequest<CategoryHomeSituation>
 {
     public Guid HomeSituationId { get; set; }   
 }
-public class GetByIdHomeSituationQueryHandler : IRequestHandler<GetByIdHomeSituationQuery, HomeSituation>
+public class GetByIdHomeSituationQueryHandler : IRequestHandler<GetByIdHomeSituationQuery, CategoryHomeSituation>
 {
     private readonly IApplicationDbContext _context;
 
@@ -21,11 +16,11 @@ public class GetByIdHomeSituationQueryHandler : IRequestHandler<GetByIdHomeSitua
     
     
 
-    public async Task<HomeSituation> Handle(GetByIdHomeSituationQuery request, CancellationToken cancellationToken)
+    public async Task<CategoryHomeSituation> Handle(GetByIdHomeSituationQuery request, CancellationToken cancellationToken)
     {
         var foundHomeSituation = await _context.HomeSituations.FindAsync(new object[] { request.HomeSituationId }, cancellationToken);
         if (foundHomeSituation is null)
-            throw new NotFoundException(nameof(HomeSituation), request.HomeSituationId);
+            throw new NotFoundException(nameof(CategoryHomeSituation), request.HomeSituationId);
 
         return foundHomeSituation;
     }

@@ -1,18 +1,9 @@
-
-﻿using Blazored.FluentValidation;
-
-using HouseSale.Application.UseCases.Categories.Queries;
-using HouseSale.Application.UseCases.CategoryRentSales.Queries;
 using HouseSale.Application.UseCases.Houses.Commands;
-using HouseSale.Blazor.Attributes;
-using HouseSale.Domain.Entities;
+using HouseSale.Blazor.Models;
 using MediatR;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
-using System;
-using System.ComponentModel.DataAnnotations;
-
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace HouseSale.Blazor.PagesBase;
 
@@ -29,17 +20,13 @@ public class CreateHouseBase:ComponentBase
     protected EditContext editContext;
 
 
-    protected async Task OnSubmitHouse(EditContext context)
-    {
-        var model = context.Model as CreateHouseCommand;
-       
-       
-    }
+   
 
-    private IList<string> imageDataUrls = new List<string>();
+    protected IList<string> imageDataUrls = new List<string>();
     private int Total;
     protected async Task UploadFileChange(InputFileChangeEventArgs file)
     {
+        
         houseImagemodel.Picture = file.GetMultipleFiles().ToArray();
 
         var format = "image/png";
@@ -56,20 +43,16 @@ public class CreateHouseBase:ComponentBase
 
     }
 
-    
-
-    protected async Task LoadMainImage(InputFileChangeEventArgs file)
+    protected async Task OnSubmitHouse(EditContext context)
     {
-        
+        var model = context.Model as CreateHouseCommand;
+
+
     }
 
+    
 
-}
-public class HouseImageModel
-{
-    [Required]
-    [FileValidation(new[] { ".png", ".jpg" ,".jpeg" })]
-    public IBrowserFile[] Picture { get; set; }
+
 }
 
 

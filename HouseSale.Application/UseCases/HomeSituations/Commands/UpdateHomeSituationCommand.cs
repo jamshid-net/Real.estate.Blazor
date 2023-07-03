@@ -1,17 +1,12 @@
 ﻿using HouseSale.Application.Commons.Interfaces;
-using HouseSale.Domain.Entities.BoolTypeEntities;
+using HouseSale.Domain.Entities;
 using MediatR;
 
 namespace HouseSale.Application.UseCases.HomeSituations.Commands;
 public class UpdateHomeSituationCommand:IRequest
 {
     public Guid HomeSituationId { get; set; }
-    public bool Renovation { get; init; }
-    public bool Average { get; init; }
-    public bool RepairRequired { get; init; }
-    public bool BlackPlaster { get; init; }
-    public bool MakeupBeforeClean { get; init; }
-    public bool Perishable { get; init; }
+    public string HomeSituationName { get; set; }
 }
 public class UpdateHomeSituationCommandHandler : IRequestHandler<UpdateHomeSituationCommand>
 {
@@ -26,14 +21,9 @@ public class UpdateHomeSituationCommandHandler : IRequestHandler<UpdateHomeSitua
     {
         var foundHomeSituation = await _context.HomeSituations.FindAsync(new object[] { request.HomeSituationId }, cancellationToken);
         if (foundHomeSituation is null)
-            throw new NotFoundException(nameof(HomeSituation), request.HomeSituationId);
+            throw new NotFoundException(nameof(CategoryHomeSituation), request.HomeSituationId);
 
-        foundHomeSituation.Renovation = request.Renovation;
-        foundHomeSituation.Average = request.Average;   
-        foundHomeSituation.RepairRequired = request.RepairRequired;
-        foundHomeSituation.BlackPlaster = request.BlackPlaster;
-        foundHomeSituation.MakeupBeforeClean = request.MakeupBeforeClean;
-        foundHomeSituation.Perishable = request.Perishable;
+        foundHomeSituation.HomeSituationName = request.HomeSituationName;
 
         await _context.SaveChangesAsync(cancellationToken);
 
