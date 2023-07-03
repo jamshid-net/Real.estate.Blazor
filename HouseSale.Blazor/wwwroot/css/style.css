@@ -423,11 +423,9 @@ a:focus {
 
 /* find section */
 .find_section {
-  background-image: url(../images/find-bg.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-top: -90px;
+    
+    
+    margin-top: -90px;
 }
 
 .find_section .form_tab_container ul {
