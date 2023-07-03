@@ -32,8 +32,8 @@ public class CreateHouseCommand:IRequest
 
     public Guid CategoryRentSaleId { get;set; }
 
-
-    public CreateHomeSituationCommand  CreateHomeSituationCommand { get;set; } 
+    public Guid CategoryHomeSituationId { get;set; }
+  
     public CreateLocatedNearbyCommand CreateLocatedNearbyCommand { get; set; } = new(); 
     public CreateThereIsInHouseCommand CreateThereIsInHouseCommand { get;set; } = new();
 
@@ -72,7 +72,7 @@ public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand>
             AddressId = await _mediator.Send(request.CreateAddressCommand),
             CategoryId = request.CategoryId,
             CategoryRentSaleId = request.CategoryRentSaleId,
-            CategoryHomeSituationId = await _mediator.Send(request.CreateHomeSituationCommand),
+            CategoryHomeSituationId = request.CategoryHomeSituationId,
             LocatedNearbyId = await _mediator.Send(request.CreateLocatedNearbyCommand),
             ThereIsInHouseId = await _mediator.Send(request.CreateThereIsInHouseCommand),
 

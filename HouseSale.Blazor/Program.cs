@@ -1,10 +1,12 @@
 
+using FluentValidation;
 using HouseSale.Application;
 using HouseSale.Application.Commons.Interfaces;
 using HouseSale.Blazor.Services;
 using HouseSale.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System.Reflection;
 
 namespace HouseSale.Blazor;
 public class Program
@@ -23,6 +25,7 @@ public class Program
         builder.Services.AddApplication();
 
         builder.Services.AddScoped<IUser, CurrentUser>();
+        builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         builder.Services.AddServerSideBlazor();
 
