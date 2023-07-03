@@ -23,7 +23,7 @@ public class CreateHouseCommand:IRequest
     public int CountOfRoom { get;set; }
 
 
-    public string MainImage { get;set; }
+    public string MainImage { get; set; } = "no photo";
     public List<string> HouseImages { get;set; } = new(15);
 
 
