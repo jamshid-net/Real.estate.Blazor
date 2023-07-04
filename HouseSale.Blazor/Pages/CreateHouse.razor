@@ -26,7 +26,7 @@
     protected async override Task OnInitializedAsync()
     {
 
-
+        cancelation = new CancellationTokenSource();
         mediator = _meditor;
         var authenticationState = await authenticationStateTask;
         categories = await _meditor.Send(new GetAllCategoryQuery());
@@ -170,13 +170,24 @@
                             </InputRadioGroup>
 
                         </div>
-
+                        <div class="row">
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <InputFile id="imageUpload" OnChange="UploadSingleImage" />
+                                  <label for="imageUpload"></label>
+                                </div>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview"  style="background-image: url(@singleImageUrl);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <div class="custom-file">
                                         <label class="custom-file-label">
-                                            Main image:
+                                            You can select many images!
                                         </label>
                                         <InputFile multiple  OnChange="UploadFileChange" class="custom-file-input" placeholder="" />
                                         @* <ValidationMessage For="() => houseImagemodel.Picture" />*@
@@ -196,6 +207,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -204,7 +216,7 @@
                                         <InputTextArea @bind-Value="@CreateHouseCommand.Description" class="form-control" />
                                     </label>
                                 </div>
-                                <div class="form-group"><button type="submit" class="btn btn-primary">Submit</button> </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -358,6 +370,8 @@
 
                     </div>
                 </div>
+
+                <div class="form-group"><button type="submit" class="btn btn-primary">Submit</button> </div>
 
             </EditForm>
         </div>
