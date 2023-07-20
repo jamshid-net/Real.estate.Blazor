@@ -21,8 +21,6 @@ public class CreateHouseBase:ComponentBase
     protected  IBrowserFile SingleImage;
     //--------------------
 
-
-
     protected IMediator mediator { get; set; }
 
     private bool displayProgress;
@@ -35,6 +33,7 @@ public class CreateHouseBase:ComponentBase
     protected IList<string> imageDataUrls = new List<string>();
 
     protected string singleImageUrl = string.Empty;
+
     private int Total;
     protected async Task UploadFileChange(InputFileChangeEventArgs file)
     {
@@ -104,7 +103,6 @@ public class CreateHouseBase:ComponentBase
 
 
         
-
 
     }
 
